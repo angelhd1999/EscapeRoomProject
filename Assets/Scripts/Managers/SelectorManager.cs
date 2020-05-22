@@ -20,47 +20,58 @@ public class SelectorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //    if(_selection != null)
-        //    {
-        //        var selectionRenderer = _selection.GetComponent<Renderer>();
-        //        selectionRenderer.material = defaultMaterial;
-        //        _selection = null;
-        //    }
-        //    //var ray = Camera.main.ScreenPointToRay(pose.GetComponent<TrackingReceiver>().wristR.transform.position); //"original"
-        //    //var ray = Physics.Raycast(Camera.main.transform.position, pose.GetComponent<TrackingReceiver>().wristR.transform.position);
-        //    RaycastHit hit;
-        //    //Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
-        //    //if (Physics.Raycast(ray, out hit)) //original
-        //    if (Physics.Raycast(Camera.main.transform.position, pose.GetComponent<TrackingReceiver>().wristR.transform.position, out hit, Mathf.Infinity))
-        //    {
-        //        Debug.DrawRay(new Vector3(0f, 0f, 540f), pose.GetComponent<TrackingReceiver>().wristR.transform.position * Mathf.Infinity, Color.yellow);
-        //        var selection = hit.transform;
-        //        if (selection.CompareTag(selectableTag))
-        //        { 
-        //            var selectionRenderer = selection.GetComponent<Renderer>();
-        //            if (selectionRenderer != null)
-        //            {
-        //                selectionRenderer.material = highlightMaterial;
-        //            }
-
-        //            _selection = selection;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Debug.DrawRay(Camera.main.transform.position, pose.GetComponent<TrackingReceiver>().wristR.transform.position * Mathf.Infinity, Color.white);
-        //    }
-        //}
-        RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position), out hit, Mathf.Infinity))
+        if (_selection != null)
+        {
+            var selectionRenderer = _selection.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            _selection = null;
+        }
+        //Right Wrist
+        RaycastHit hitR;
+        // The ray intersect any objects excluding the player layer
+        if (Physics.Raycast(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position), out hitR, Mathf.Infinity))
         {
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position) * 1000, Color.yellow);
-            Debug.Log(hit.collider.gameObject.name);
+            var selection = hitR.transform;
+            if (selection.CompareTag(selectableTag))
+            {
+                Debug.Log(hitR.collider.gameObject.name);
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                }
+
+                _selection = selection;
+            }
         }
         else
         {
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position) * 1000, Color.white);
+            //Debug.Log("Did not Hit");
+        }
+        //Left Wrist
+        RaycastHit hitL;
+        // The ray intersect any objects excluding the player layer
+        if (Physics.Raycast(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position), out hitL, Mathf.Infinity))
+        {
+            Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position) * 1000, Color.yellow);
+            var selection = hitL.transform;
+            if (selection.CompareTag(selectableTag))
+            {
+                Debug.Log(hitL.collider.gameObject.name);
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                }
+
+                _selection = selection;
+            }
+        }
+        else
+        {
+            Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position) * 1000, Color.white);
             //Debug.Log("Did not Hit");
         }
     }
