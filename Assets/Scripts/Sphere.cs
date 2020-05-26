@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sphere : MonoBehaviour
 {
     public GameObject physicsManager;
+    public bool useGravity = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,10 @@ public class Sphere : MonoBehaviour
 
     public void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(Physics.gravity * physicsManager.GetComponent<PhysicsManager>().gravity, ForceMode.Acceleration);
+        if (useGravity)
+        {
+            GetComponent<Rigidbody>().AddForce(Physics.gravity * physicsManager.GetComponent<PhysicsManager>().gravity, ForceMode.Acceleration);
+        }
     }
 
     // Update is called once per frame
