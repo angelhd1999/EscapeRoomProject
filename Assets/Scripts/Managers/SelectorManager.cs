@@ -14,11 +14,14 @@ public class SelectorManager : MonoBehaviour
     private Transform _selectionL;
     private string objectNameR;
     private string objectNameL;
-    private bool couroutineRunnigR = false;
+    [SerializeField] private bool couroutineRunnigR = false;
     private bool couroutineRunnigL = false;
-    private bool right = true;
-    private bool left = false;
+    private bool couroutineMovingR = false;
+    private bool couroutineMovingL = false; 
+    private bool setRight = true;
+    private bool setLeft = false;
     Vector3 hitPointR;
+    Vector3 hitPointL;
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +53,14 @@ public class SelectorManager : MonoBehaviour
                 //Debug.Log(hitR.collider.gameObject.name);
                 _selectionR = selection;
                 objectNameR = hitR.collider.gameObject.name;
-                hitPointR = hitR.point;
+               
                 HighlightSphere(_selectionR, objectNameR);
-                CheckPick(right);
+                CheckPick(setRight);
+            }
+            else
+            {
+                objectNameR = hitR.collider.gameObject.name;
+                hitPointR = hitR.point;
             }
         }
         else
@@ -73,8 +81,14 @@ public class SelectorManager : MonoBehaviour
                 //Debug.Log(hitL.collider.gameObject.name);
                 _selectionL = selection;
                 objectNameL = hitL.collider.gameObject.name;
+
                 HighlightSphere(_selectionL, objectNameL);
-                CheckPick(left);
+                CheckPick(setLeft);
+            }
+            else
+            {
+                objectNameL = hitL.collider.gameObject.name;
+                hitPointL = hitL.point;
             }
         }
         else
@@ -109,21 +123,22 @@ public class SelectorManager : MonoBehaviour
         Transform firstObjectSelected = _selectionR;
         //Debug.Log(firstObjectName);
         float startTime = Time.time;
-        while (true)
+        while (couroutineRunnigR)
         {
             if (firstObjectName != objectNameR)
             {
                 couroutineRunnigR = false;
                 yield break;
             }
-            if (Time.time - startTime > 3f )
+            if (Time.time - startTime > 1.5f )
             {
                 Debug.Log("Achieved" + firstObjectName);
-                StartCoroutine(MoveSphere(firstObjectSelected, right));
+                CheckMove(firstObjectSelected, setRight);
                 yield break;
             }
             yield return new WaitForSeconds(0.1f);
         }
+        yield break;
     }
 
     IEnumerator PickSphereL()
@@ -132,36 +147,110 @@ public class SelectorManager : MonoBehaviour
         Transform firstObjectSelected = _selectionL;
         //Debug.Log(firstObjectName);
         float startTime = Time.time;
-        while (true)
+        while (couroutineRunnigL)
         {
             if (firstObjectName != objectNameL)
             {
                 couroutineRunnigL = false;
                 yield break;
             }
-            if (Time.time - startTime > 3f)
+            if (Time.time - startTime > 1.5f)
             {
                 Debug.Log("Achieved" + firstObjectName);
+                CheckMove(firstObjectSelected, setLeft);
+                yield break;
             }
             yield return new WaitForSeconds(0.1f);
+        }
+        yield break;
+    }
+    void CheckMove(Transform selection, bool hand)
+    {
+        if (hand)
+        {
+            if (!couroutineMovingR)
+            {
+                couroutineMovingR = true;
+                StartCoroutine(MoveSphere(selection, hand));
+            }
+        }
+        else
+        {
+            if (!couroutineMovingL)
+            {
+                couroutineMovingL = true;
+                StartCoroutine(MoveSphere(selection, hand));
+            }
         }
     }
 
     IEnumerator MoveSphere(Transform selection, bool right)
     {
-        while (true)
+        float startTime = Time.time;
+        bool settedPosition = false;
+        Vector3 prev_position = selection.position;
+        if (right)
         {
-            if (right)
+            while (couroutineMovingR)
             {
+                Debug.Log("inMoveSphere loop");
+                if (!settedPosition)
+                {
+                    prev_position = selection.position;
+                    settedPosition = true;
+                }
                 selection.gameObject.layer = 2;
                 selection.gameObject.GetComponent<Sphere>().useGravity = false;
                 selection.position = hitPointR;
+                if (Vector3.Distance(prev_position, selection.position) > 50)
+                {
+                    startTime = Time.time;
+                    settedPosition = false;
+                }
+                if (Time.time - startTime > 3f)
+                {
+                    Debug.Log("Dropped");
+                    selection.gameObject.layer = 0;
+                    selection.gameObject.GetComponent<Sphere>().useGravity = true;
+                    couroutineRunnigR = false;
+                    couroutineMovingR = false;
+                    yield break;
+                }
+                yield return new WaitForSeconds(0.01f);
             }
-            else
-            {
+            yield break;
 
+        }
+        else
+        {
+            while (couroutineMovingL)
+            {
+                Debug.Log("inMoveSphere loop");
+                if (!settedPosition)
+                {
+                    prev_position = selection.position;
+                    settedPosition = true;
+                }
+                selection.gameObject.layer = 2;
+                selection.gameObject.GetComponent<Sphere>().useGravity = false;
+                selection.position = hitPointL;
+                if (Vector3.Distance(prev_position, selection.position) > 50)
+                {
+                    startTime = Time.time;
+                    settedPosition = false;
+                }
+                if (Time.time - startTime > 3f)
+                {
+                    Debug.Log("Dropped");
+                    selection.gameObject.layer = 0;
+                    selection.gameObject.GetComponent<Sphere>().useGravity = true;
+                    couroutineRunnigL = false;
+                    couroutineMovingL = false;
+                    yield break;
+                }
+                yield return new WaitForSeconds(0.01f);
             }
-            yield return new WaitForSeconds(0.001f);
+            yield break;
         }
         
     }
