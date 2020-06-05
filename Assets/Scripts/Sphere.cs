@@ -23,6 +23,8 @@ public class Sphere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 pos = transform.position;
+        pos.z = 200;
+        transform.position = pos; //To block their z movement.
     }
 }
