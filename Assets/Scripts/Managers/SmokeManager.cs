@@ -139,6 +139,7 @@ public class SmokeManager : MonoBehaviour
                 break;
             case "ManibelaVerda":
                 crank.GetComponent<RotateObject>().enabled = true;
+                smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -0.001f, 0.0f);
                 break;
             case "ManibelaBlava":
                 crank.GetComponent<RotateObject>().enabled = true;
@@ -146,6 +147,22 @@ public class SmokeManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    //With absolute value
+    public bool Approximately(Vector3 me, Vector3 other, float allowedDifference)
+    {
+        var dx = me.x - other.x;
+        if (Mathf.Abs(dx) > allowedDifference)
+            return false;
+
+        var dy = me.y - other.y;
+        if (Mathf.Abs(dy) > allowedDifference)
+            return false;
+
+        var dz = me.z - other.z;
+
+        return Mathf.Abs(dz) >= allowedDifference;
     }
     /*
    void CheckPick(bool right)

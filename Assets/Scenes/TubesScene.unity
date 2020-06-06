@@ -1328,7 +1328,7 @@ MonoBehaviour:
   highlightMaterial: {fileID: 0}
   defaultMaterial: {fileID: 0}
   couroutineRunnigR: 0
-  smoke: {fileID: 0}
+  smoke: {fileID: 1800407990}
 --- !u!1 &624819595
 GameObject:
   m_ObjectHideFlags: 0
