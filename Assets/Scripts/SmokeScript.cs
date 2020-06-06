@@ -15,7 +15,7 @@ public class SmokeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 
     //Set color in RGB values from 0 to 255.
@@ -61,24 +61,29 @@ public class SmokeScript : MonoBehaviour
 
         Debug.Log(currentColor);
 
-        float newRed = currentColor.a + red;
-        float newGreen = currentColor.b + green;
-        float newBlue = currentColor.g + blue;
+        float newRed = currentColor.r + red;
+        float newGreen = currentColor.g + green;
+        float newBlue = currentColor.b + blue;
         Debug.Log(newGreen);
         //If it is possible increase color.
         if (newRed >= 0f && newRed <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(newRed, currentColor.b, currentColor.g));
+            rend.material.SetColor("_Color", new Color(newRed, currentColor.g, currentColor.b));
         }
+
+        currentColor = rend.material.GetColor("_Color");
 
         if (newGreen >= 0f && newGreen <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(currentColor.a, newGreen, currentColor.g));
+            rend.material.SetColor("_Color", new Color(currentColor.r, newGreen, currentColor.b));
         }
+
+        currentColor = rend.material.GetColor("_Color");
+        //Debug.Log("After set"+currentColor);
 
         if (newBlue >= 0f && newBlue <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(currentColor.a, currentColor.b, newBlue));
+            rend.material.SetColor("_Color", new Color(currentColor.r, currentColor.g, newBlue));
         }
 
     }

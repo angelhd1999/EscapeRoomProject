@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +63,7 @@ public class SmokeManager : MonoBehaviour
                 Debug.Log(objectNameR);
                 selectedCrankRight = hitR.collider.gameObject;
                 //RotateCrank.
-                rotateCrank(selectedCrankRight, new Vector3(0, 0, -1));
+                rotateCrank(selectedCrankRight, new Vector3(0, 0, -1), "right");
 
                 /*Rotate with vector (0, 0, -1) and velocity 50*/
                 /*Increase RGB value of color selected (max 1)*/
@@ -102,7 +103,7 @@ public class SmokeManager : MonoBehaviour
                 //Assing selected crank.
                 selectedCrankLeft = hitL.collider.gameObject;
                 //RotateCrank.
-                rotateCrank(selectedCrankLeft, new Vector3(0, 0, 1));
+                rotateCrank(selectedCrankLeft, new Vector3(0, 0, 1), "left");
 
                 /*Rotate with vector (0, 0, 1) and velocity 50*/
                 /*Decrease RGB value of color selected (min 0)*/
@@ -128,7 +129,7 @@ public class SmokeManager : MonoBehaviour
         }
     }
 
-    void rotateCrank(GameObject crank, Vector3 rotationVector)
+    void rotateCrank(GameObject crank, Vector3 rotationVector, string hand)
     {
         crank.GetComponent<RotateObject>().setVector(rotationVector);
         //What crank was selected.
@@ -136,13 +137,18 @@ public class SmokeManager : MonoBehaviour
         {
             case "ManibelaVermella":
                 crank.GetComponent<RotateObject>().enabled = true;
+                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.01f, 0.0f, 0.0f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(-0.01f, 0.0f, 0.0f);
                 break;
             case "ManibelaVerda":
                 crank.GetComponent<RotateObject>().enabled = true;
-                smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -0.001f, 0.0f);
+                if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.01f, 0.0f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -0.01f, 0.0f);
                 break;
             case "ManibelaBlava":
                 crank.GetComponent<RotateObject>().enabled = true;
+                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, 0.01f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, -0.01f);
                 break;
             default:
                 break;
