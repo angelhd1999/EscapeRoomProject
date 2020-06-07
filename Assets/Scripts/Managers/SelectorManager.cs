@@ -9,6 +9,7 @@ public class SelectorManager : MonoBehaviour
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
+    [SerializeField] private float timeToPick = 0.75f;
 
     private Transform _selectionR;
     private Transform _selectionL;
@@ -130,7 +131,7 @@ public class SelectorManager : MonoBehaviour
                 couroutineRunnigR = false;
                 yield break;
             }
-            if (Time.time - startTime > 1.5f )
+            if (Time.time - startTime > timeToPick)
             {
                 Debug.Log("Achieved" + firstObjectName);
                 CheckMove(firstObjectSelected, setRight);
@@ -154,7 +155,7 @@ public class SelectorManager : MonoBehaviour
                 couroutineRunnigL = false;
                 yield break;
             }
-            if (Time.time - startTime > 1.5f)
+            if (Time.time - startTime > timeToPick)
             {
                 Debug.Log("Achieved" + firstObjectName);
                 CheckMove(firstObjectSelected, setLeft);

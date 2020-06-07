@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MesureMovement : MonoBehaviour
+{
+    public GameObject LMesure;
+    public GameObject RMesure;
+    public GameObject LWScale;
+    public GameObject RWScale;
+    
+    private float totalWeight;
+    private Vector3 initPositionLM;
+    private Vector3 initPositionRM;
+    private float moveDist = 26.5f;
+    private float LRelation;
+    private float RRelation;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        totalWeight = LWScale.GetComponent<WeightScale>().calculatedMass + RWScale.GetComponent<WeightScale>().calculatedMass;
+        initPositionLM = LMesure.transform.position + new Vector3(0, -26.5f, 0);
+        initPositionRM = RMesure.transform.position + new Vector3(0, -26.5f, 0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        totalWeight = LWScale.GetComponent<WeightScale>().calculatedMass + RWScale.GetComponent<WeightScale>().calculatedMass;
+        Debug.Log(totalWeight);
+        if (totalWeight != 0)
+        {
+            LRelation = LWScale.GetComponent<WeightScale>().calculatedMass / totalWeight;
+            RRelation = 1f - LRelation;
+            LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0); 
+            RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
+        }   
+    }
+}
