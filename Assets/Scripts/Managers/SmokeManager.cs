@@ -61,6 +61,11 @@ public class SmokeManager : MonoBehaviour
 
                 //Assing selected crank.
                 Debug.Log(objectNameR);
+                if(selectedCrankRight != null && !selectedCrankRight.Equals(hitR.collider.gameObject))
+                {
+                    selectedCrankRight.GetComponent<RotateObject>().enabled = false;
+                    selectedCrankRight = null;
+                }
                 selectedCrankRight = hitR.collider.gameObject;
                 //RotateCrank.
                 rotateCrank(selectedCrankRight, new Vector3(0, 0, -1), "right");
@@ -101,6 +106,11 @@ public class SmokeManager : MonoBehaviour
                 objectNameL = hitL.collider.gameObject.name;
 
                 //Assing selected crank.
+                if (selectedCrankLeft != null && !selectedCrankLeft.Equals(hitL.collider.gameObject))
+                {
+                    selectedCrankLeft.GetComponent<RotateObject>().enabled = false;
+                    selectedCrankLeft = null;
+                }
                 selectedCrankLeft = hitL.collider.gameObject;
                 //RotateCrank.
                 rotateCrank(selectedCrankLeft, new Vector3(0, 0, 1), "left");
