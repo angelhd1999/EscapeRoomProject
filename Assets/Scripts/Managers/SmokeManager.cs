@@ -26,6 +26,7 @@ public class SmokeManager : MonoBehaviour
     private GameObject selectedCrankRight = null;
     private GameObject selectedCrankLeft = null;
 
+    public float colorChangeTolerance;
     public GameObject smoke;
 
     // Start is called before the first frame update
@@ -147,17 +148,17 @@ public class SmokeManager : MonoBehaviour
         {
             case "ManibelaVermella":
                 crank.GetComponent<RotateObject>().enabled = true;
-                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.01f, 0.0f, 0.0f);
+                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(colorChangeTolerance, 0.0f, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(-0.01f, 0.0f, 0.0f);
                 break;
             case "ManibelaVerda":
                 crank.GetComponent<RotateObject>().enabled = true;
-                if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.01f, 0.0f);
+                if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -0.01f, 0.0f);
                 break;
             case "ManibelaBlava":
                 crank.GetComponent<RotateObject>().enabled = true;
-                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, 0.01f);
+                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, colorChangeTolerance);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, -0.01f);
                 break;
             default:
