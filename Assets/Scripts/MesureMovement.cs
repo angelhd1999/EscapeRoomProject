@@ -35,6 +35,11 @@ public class MesureMovement : MonoBehaviour
             RRelation = 1f - LRelation;
             LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0); 
             RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
-        }   
+        } 
+        else
+        {
+            LMesure.transform.position = initPositionLM + new Vector3(0, 26.5f, 0);
+            RMesure.transform.position = initPositionRM + new Vector3(0, 26.5f, 0);
+        } 
     }
 }
