@@ -59,12 +59,12 @@ public class SmokeScript : MonoBehaviour
     {
         Color currentColor = rend.material.GetColor("_Color");
 
-        Debug.Log(currentColor);
+        //Debug.Log(currentColor);
 
         float newRed = currentColor.r + red;
         float newGreen = currentColor.g + green;
         float newBlue = currentColor.b + blue;
-        Debug.Log(newGreen);
+        //Debug.Log(newGreen);
         //If it is possible increase color.
         if (newRed >= 0f && newRed <= 1.0f)
         {
@@ -88,10 +88,17 @@ public class SmokeScript : MonoBehaviour
 
     }
 
-    Color getCurrentColor(float red, float green, float blue)
+    public Dictionary<string, int> getCurrentColor()
     {
+        Dictionary<string, int> smokeColors = new Dictionary<string, int>();
+
         Color currentColor = rend.material.GetColor("_Color");
-        return currentColor;
+
+        smokeColors.Add("red", (int)(currentColor.r * 255));
+        smokeColors.Add("green", (int)(currentColor.g * 255));
+        smokeColors.Add("blue", (int)(currentColor.b * 255));
+
+        return smokeColors;
     }
 
         //Color is expressed in % (from 0 to 1) so this function converts 255 to a value from 0 to 1.

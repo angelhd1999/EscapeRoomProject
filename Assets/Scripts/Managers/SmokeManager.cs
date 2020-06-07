@@ -27,12 +27,27 @@ public class SmokeManager : MonoBehaviour
     private GameObject selectedCrankLeft = null;
 
     public float colorChangeTolerance;
+    public int colorComparationTolerance;
     public GameObject smoke;
+    public GameObject sphere;
+
+    Dictionary<string, int> ballColors = new Dictionary<string, int>();
 
     // Start is called before the first frame update
     void Start()
     {
+        this.changeBallColor();
+    }
 
+    void changeBallColor()
+    {
+        System.Random r = new System.Random();
+
+        ballColors["red"] = r.Next(0, 256);
+        ballColors["green"] = r.Next(0, 256);
+        ballColors["blue"] = r.Next(0, 256);
+
+        sphere.GetComponent<ColorBall>().setColor(ballColors["red"], ballColors["green"], ballColors["blue"]);
     }
 
     // Update is called once per frame
@@ -61,7 +76,7 @@ public class SmokeManager : MonoBehaviour
                 objectNameR = hitR.collider.gameObject.name;
 
                 //Assing selected crank.
-                Debug.Log(objectNameR);
+                //Debug.Log(objectNameR);
                 if(selectedCrankRight != null && !selectedCrankRight.Equals(hitR.collider.gameObject))
                 {
                     selectedCrankRight.GetComponent<RotateObject>().enabled = false;
@@ -138,6 +153,11 @@ public class SmokeManager : MonoBehaviour
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position) * 1000, Color.white);
             //Debug.Log("Did not Hit");
         }
+
+        if (smokeBallEqualColor())
+        {
+            changeBallColor();
+        }
     }
 
     void rotateCrank(GameObject crank, Vector3 rotationVector, string hand)
@@ -181,6 +201,38 @@ public class SmokeManager : MonoBehaviour
 
         return Mathf.Abs(dz) >= allowedDifference;
     }
+
+
+    bool smokeBallEqualColor()
+    {
+        int colorCount = 0;
+
+        Dictionary<string, int> smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
+
+        Debug.Log("Blue ball "+ ballColors["blue"]+" Blue smoke"+ smokeColors["blue"]);
+        if (ballColors["red"] - colorComparationTolerance < smokeColors["red"] && smokeColors["red"] < ballColors["red"] + colorComparationTolerance)
+        {
+            Debug.Log("Red OK");
+            colorCount++;
+        }
+
+        if (ballColors["green"] - colorComparationTolerance < smokeColors["green"] && smokeColors["green"] < ballColors["green"] + colorComparationTolerance)
+        {
+            Debug.Log("Green OK");
+            colorCount++;
+        }
+
+        if (ballColors["blue"] - colorComparationTolerance < smokeColors["blue"] && smokeColors["blue"] < ballColors["blue"] + colorComparationTolerance)
+        {
+            Debug.Log("Blue OK");
+            colorCount++;
+        }
+
+        //If three colors are inside tolerance return true.
+        if (colorCount == 3) return true;
+        else return false;
+    }
+
     /*
    void CheckPick(bool right)
    {
