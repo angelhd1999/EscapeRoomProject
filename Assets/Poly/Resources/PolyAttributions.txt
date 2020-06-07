@@ -1,5 +1,11 @@
 This project uses the following items from Poly (http://poly.google.com):
 
+Title: ddoge bronze gear
+Author: Robert S
+URL: https://poly.google.com/view/af4OLJmIU_W
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
 Title: Hand
 Author: Poly by Google
 URL: https://poly.google.com/view/btWmPNVSKUc
