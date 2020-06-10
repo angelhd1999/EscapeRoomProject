@@ -169,17 +169,17 @@ public class SmokeManager : MonoBehaviour
             case "ManibelaVermella":
                 crank.GetComponent<RotateObject>().enabled = true;
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(colorChangeTolerance, 0.0f, 0.0f);
-                else smoke.GetComponent<SmokeScript>().increaseColor(-0.01f, 0.0f, 0.0f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(-colorChangeTolerance, 0.0f, 0.0f);
                 break;
             case "ManibelaVerda":
                 crank.GetComponent<RotateObject>().enabled = true;
                 if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
-                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -0.01f, 0.0f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -colorChangeTolerance, 0.0f);
                 break;
             case "ManibelaBlava":
                 crank.GetComponent<RotateObject>().enabled = true;
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, colorChangeTolerance);
-                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, -0.01f);
+                else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, -colorChangeTolerance);
                 break;
             default:
                 break;
