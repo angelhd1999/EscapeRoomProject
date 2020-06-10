@@ -9,12 +9,10 @@ public class Sphere : MonoBehaviour
     public int makeImpulse = 0;
 
     private float gravityForce;
-    private float impulseForce;
     // Start is called before the first frame update
     void Start()
     {
         gravityForce = physicsManager.GetComponent<PhysicsManager>().gravity;
-        impulseForce = physicsManager.GetComponent<PhysicsManager>().impulse;
     }
 
     public void FixedUpdate()
@@ -22,19 +20,6 @@ public class Sphere : MonoBehaviour
         if (useGravity)
         {
             GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityForce, ForceMode.Acceleration);
-        }
-        if (makeImpulse != 0)
-        {
-            //Add force
-            if (makeImpulse == 1)
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * impulseForce);
-            }
-            else
-            {
-                GetComponent<Rigidbody>().AddForce(new Vector3(1f, 0f, 0f) * impulseForce);
-            }
-            makeImpulse = 0;
         }
     }
 
@@ -45,16 +30,11 @@ public class Sphere : MonoBehaviour
         pos.z = 200;
         transform.position = pos; //To block their z movement.
     }
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("LBound"))
+        if (other.gameObject.CompareTag("Bounds"))
         {
-            makeImpulse = 1;
-        }
-        if(other.gameObject.CompareTag("RBound"))
-        {
-            makeImpulse = 2;
+            transform.position = new Vector3(400, -25, 200);
         }
     }
 }
