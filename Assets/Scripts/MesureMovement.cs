@@ -17,6 +17,7 @@ public class MesureMovement : MonoBehaviour
     private float LRelation;
     private float RRelation;
     private bool runningScript = true;
+    private int spheresNum = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +43,11 @@ public class MesureMovement : MonoBehaviour
             }
             else
             {
-                LMesure.transform.position = initPositionLM + new Vector3(0, 26.5f, 0);
-                RMesure.transform.position = initPositionRM + new Vector3(0, 26.5f, 0);
+                LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
+                RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
 
-            if (LRelation == RRelation && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == 2)
+            if (LRelation == RRelation && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == spheresNum)
             {
                 runningScript = false;
                 Door.GetComponent<Animator>().SetBool("PlaySafe", true);
