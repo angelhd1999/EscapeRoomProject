@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Selectable
+  - Bounds
   layers:
   - Default
   - TransparentFX

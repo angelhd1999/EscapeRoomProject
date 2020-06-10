@@ -9,8 +9,15 @@ public class SelectorManager : MonoBehaviour
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
+    [SerializeField] private Material MgMaterial;
+    [SerializeField] private Material AlMaterial;
+    [SerializeField] private Material TiMaterial;
+    [SerializeField] private Material BrMaterial;
+    [SerializeField] private Material BzMaterial;
+    [SerializeField] private Material AgMaterial;
     [SerializeField] private float timeToPick = 0.75f;
 
+    private Material currentMaterial;
     private Transform _selectionR;
     private Transform _selectionL;
     private string objectNameR;
@@ -271,8 +278,32 @@ public class SelectorManager : MonoBehaviour
     {
         if (objectName.Contains("Sphere"))
         {
+            switch (objectName)
+            {
+                case "Sphere (Mg)":
+                    currentMaterial = MgMaterial;
+                    break;
+                case "Sphere (Al)":
+                    currentMaterial = AlMaterial;
+                    break;
+                case "Sphere (Ti)":
+                    currentMaterial = TiMaterial;
+                    break;
+                case "Sphere (Br)":
+                    currentMaterial = BrMaterial;
+                    break;
+                case "Sphere (Bz)":
+                    currentMaterial = BzMaterial;
+                    break;
+                case "Sphere (Ag)":
+                    currentMaterial = AgMaterial;
+                    break;
+                default:
+                    currentMaterial = defaultMaterial;
+                    break;
+            }
             var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
+            selectionRenderer.material = currentMaterial;
             _selection = null;
         }
     }
