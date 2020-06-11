@@ -22,8 +22,12 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("SceneChange"))
         {
-            Debug.Log("To tubes scene!");
-            GameStateManager.GetComponent<GameStateManager>().goTubesScene();
+            if(other.name == "Tubes")
+            {
+                Debug.Log("To tubes scene!");
+                GameStateManager.GetComponent<GameStateManager>().goTubesScene();
+            }
+            
         }
     }
 }
