@@ -46,7 +46,8 @@ public class MesureMovement : MonoBehaviour
                 LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
                 RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
-
+            Debug.Log("LRelation: " + LRelation);
+            Debug.Log("RRelation: " + RRelation);
             if (LRelation == RRelation && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == spheresNum)
             {
                 runningScript = false;
