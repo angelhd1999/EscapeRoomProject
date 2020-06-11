@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MesureMovement : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class MesureMovement : MonoBehaviour
         if (runningScript) 
         {
             totalWeight = LWScale.GetComponent<WeightScale>().calculatedMass + RWScale.GetComponent<WeightScale>().calculatedMass;
-            Debug.Log(totalWeight);
+            //Debug.Log(totalWeight);
             if (totalWeight != 0)
             {
                 LRelation = LWScale.GetComponent<WeightScale>().calculatedMass / totalWeight;
@@ -46,9 +47,9 @@ public class MesureMovement : MonoBehaviour
                 LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
                 RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
-            Debug.Log("LRelation: " + LRelation);
-            Debug.Log("RRelation: " + RRelation);
-            if (LRelation == RRelation && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == spheresNum)
+            //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
+            //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
+            if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == spheresNum)
             {
                 runningScript = false;
                 Door.GetComponent<Animator>().SetBool("PlaySafe", true);

@@ -3122,7 +3122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306609451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 108, y: -25, z: 200}
+  m_LocalPosition: {x: 280, y: -25, z: 200}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 580623959}
@@ -14383,7 +14383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188933827}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59, y: -25, z: 200}
+  m_LocalPosition: {x: 230, y: -25, z: 200}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 580623959}
@@ -21960,7 +21960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464616698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -123, y: -25, z: 200}
+  m_LocalPosition: {x: -280, y: -25, z: 200}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 580623959}
@@ -33452,7 +33452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034737499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -62, y: -25, z: 200}
+  m_LocalPosition: {x: -230, y: -25, z: 200}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 580623959}
@@ -35395,7 +35395,7 @@ GameObject:
   - component: {fileID: 5801985135776564935}
   - component: {fileID: 5801985135776564934}
   m_Layer: 0
-  m_Name: Sphere (Ag)
+  m_Name: Gold
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35474,7 +35474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5801985136936927858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 159, y: -25, z: 200}
+  m_LocalPosition: {x: 330, y: -25, z: 200}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 580623959}

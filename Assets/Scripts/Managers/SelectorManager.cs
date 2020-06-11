@@ -128,6 +128,10 @@ public class SelectorManager : MonoBehaviour
     IEnumerator PickSphereR()
     {
         string firstObjectName = objectNameR;
+        if(firstObjectName == "Gold")
+        {
+            Debug.Log("Achieved");
+        }
         Transform firstObjectSelected = _selectionR;
         //Debug.Log(firstObjectName);
         float startTime = Time.time;
@@ -140,7 +144,7 @@ public class SelectorManager : MonoBehaviour
             }
             if (Time.time - startTime > timeToPick)
             {
-                Debug.Log("Achieved" + firstObjectName);
+                //Debug.Log("Achieved" + firstObjectName);
                 CheckMove(firstObjectSelected, setRight);
                 yield break;
             }
