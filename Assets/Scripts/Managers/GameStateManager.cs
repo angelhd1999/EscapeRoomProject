@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance; //Singleton
+    
+    [SerializeField] private GameObject pose;
+    [SerializeField] private Transform head;
+    [SerializeField] private Transform lWrist;
+    [SerializeField] private Transform rWrist;
+    [SerializeField] private GameObject particles;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +28,16 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void preTubesScene()
+    {
+        pose.GetComponent<TrackingReceiver>().enabled = false; //Stop posenet
+        pose.GetComponent<Animator>().SetBool("SceneOneDone", true);
+        //Make earthquake sound
+        head.position = new Vector3(0, 180, 0);
+        lWrist.position = new Vector3(-120, 0, 0);
+        rWrist.position = new Vector3(120, 0, 0);
+        particles.gameObject.SetActive(true);
+    }
     public void goTubesScene()
     {
         SceneManager.LoadScene("TubesScene");

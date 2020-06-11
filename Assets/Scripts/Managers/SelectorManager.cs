@@ -6,6 +6,7 @@ using UnityEngine;
 public class SelectorManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose;
+    [SerializeField] private GameObject GameStateManager;
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
@@ -134,9 +135,8 @@ public class SelectorManager : MonoBehaviour
             Debug.Log("Achieved");
             //Make sound of pick gold.
             _selectionR.gameObject.SetActive(false);
-            pose.GetComponent<TrackingReceiver>().enabled = false; //Stop posenet
-            pose.GetComponent<Animator>().SetBool("SceneOneDone", true);
-
+            GameStateManager.GetComponent<GameStateManager>().preTubesScene();
+            this.gameObject.SetActive(false);
         }
         float startTime = Time.time;
         while (couroutineRunnigR)
@@ -166,8 +166,10 @@ public class SelectorManager : MonoBehaviour
         if (firstObjectName == "Gold")
         {
             Debug.Log("Achieved");
-            //runningScript = false; //Stop posenet
-            //Door.GetComponent<Animator>().SetBool("PlaySafe", true);
+            //Make sound of pick gold.
+            _selectionR.gameObject.SetActive(false);
+            GameStateManager.GetComponent<GameStateManager>().preTubesScene();
+            this.gameObject.SetActive(false);
 
         }
         while (couroutineRunnigL)
