@@ -40,6 +40,7 @@ public class GameStateManager : MonoBehaviour
         lWrist.position = new Vector3(-120, 0, 0);
         rWrist.position = new Vector3(120, 0, 0);
         particles.gameObject.SetActive(true);
+        GetComponent<AudioSource>().Play();
     }
     public void goTubesScene()
     {
