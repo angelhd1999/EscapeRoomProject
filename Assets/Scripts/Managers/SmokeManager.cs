@@ -158,7 +158,7 @@ public class SmokeManager : MonoBehaviour
         //What crank was selected.
         switch (crank.name)
         {
-            case "ManibelaVermella":
+            case "Red Cross":
                 if ((String.Equals(hand, "right") && smokeColors["red"] >= 254) || (String.Equals(hand, "left") && smokeColors["red"] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;
@@ -170,7 +170,7 @@ public class SmokeManager : MonoBehaviour
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(colorChangeTolerance, 0.0f, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(-colorChangeTolerance, 0.0f, 0.0f);
                 break;
-            case "ManibelaVerda":
+            case "Green Cross":
                 Debug.Log("Color " + smokeColors["green"]);
                 if ((String.Equals(hand, "right") && smokeColors["green"] >= 254) || (String.Equals(hand, "left") && smokeColors["green"] == 0))
                 {
@@ -183,7 +183,7 @@ public class SmokeManager : MonoBehaviour
                 if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -colorChangeTolerance, 0.0f);
                 break;
-            case "ManibelaBlava":
+            case "Blue Cross":
                 if ((String.Equals(hand, "right") && smokeColors["blue"] >= 254) || (String.Equals(hand, "left") && smokeColors["blue"] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;

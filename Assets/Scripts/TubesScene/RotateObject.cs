@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
-
+    public List<GameObject> Children;
     public Vector3 vector;
     public int velocity;
     // Start is called before the first frame update
@@ -16,8 +16,13 @@ public class RotateObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Rotate the object around its local X axis at 1 degree per second
-        transform.Rotate(vector * Time.deltaTime * velocity);
+
+        foreach (GameObject child in Children)
+        {
+            //child is your child transform
+            child.transform.Rotate(vector * Time.deltaTime * velocity);
+        }
+     
     }
 
     public void setVector(Vector3 newvector)
