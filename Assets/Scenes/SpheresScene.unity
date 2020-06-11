@@ -37453,7 +37453,7 @@ GameObject:
   - component: {fileID: 2086328067}
   - component: {fileID: 2086328066}
   m_Layer: 0
-  m_Name: FumInicial
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
