@@ -128,12 +128,14 @@ public class SelectorManager : MonoBehaviour
     IEnumerator PickSphereR()
     {
         string firstObjectName = objectNameR;
-        if(firstObjectName == "Gold")
+        Transform firstObjectSelected = _selectionR;
+        if (firstObjectName == "Gold")
         {
             Debug.Log("Achieved");
+            //Make sound of pick gold.
+            _selectionR.gameObject.SetActive(false);
+
         }
-        Transform firstObjectSelected = _selectionR;
-        //Debug.Log(firstObjectName);
         float startTime = Time.time;
         while (couroutineRunnigR)
         {
@@ -157,8 +159,13 @@ public class SelectorManager : MonoBehaviour
     {
         string firstObjectName = objectNameL;
         Transform firstObjectSelected = _selectionL;
-        //Debug.Log(firstObjectName);
+       
         float startTime = Time.time;
+        if (firstObjectName == "Gold")
+        {
+            Debug.Log("Achieved");
+
+        }
         while (couroutineRunnigL)
         {
             if (firstObjectName != objectNameL)
@@ -168,7 +175,7 @@ public class SelectorManager : MonoBehaviour
             }
             if (Time.time - startTime > timeToPick)
             {
-                Debug.Log("Achieved" + firstObjectName);
+                //Debug.Log("Achieved" + firstObjectName);
                 CheckMove(firstObjectSelected, setLeft);
                 yield break;
             }
@@ -205,7 +212,7 @@ public class SelectorManager : MonoBehaviour
         {
             while (couroutineMovingR)
             {
-                Debug.Log("inMoveSphere loop");
+                //Debug.Log("inMoveSphere loop");
                 if (!settedPosition)
                 {
                     prev_position = selection.position;
@@ -221,7 +228,7 @@ public class SelectorManager : MonoBehaviour
                 }
                 if (Time.time - startTime > 3f)
                 {
-                    Debug.Log("Dropped");
+                    //Debug.Log("Dropped");
                     selection.gameObject.layer = 0;
                     selection.gameObject.GetComponent<Sphere>().useGravity = true;
                     couroutineRunnigR = false;
@@ -237,7 +244,7 @@ public class SelectorManager : MonoBehaviour
         {
             while (couroutineMovingL)
             {
-                Debug.Log("inMoveSphere loop");
+                //Debug.Log("inMoveSphere loop");
                 if (!settedPosition)
                 {
                     prev_position = selection.position;
@@ -253,7 +260,7 @@ public class SelectorManager : MonoBehaviour
                 }
                 if (Time.time - startTime > 3f)
                 {
-                    Debug.Log("Dropped");
+                    //Debug.Log("Dropped");
                     selection.gameObject.layer = 0;
                     selection.gameObject.GetComponent<Sphere>().useGravity = true;
                     couroutineRunnigL = false;
