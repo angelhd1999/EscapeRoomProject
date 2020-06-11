@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance; //Singleton
+
     public Text scoreText;
     public Text timer;
     public Text finalScore;
