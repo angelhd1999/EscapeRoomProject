@@ -5,19 +5,26 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject player;
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 offset;
 
-    private Vector3 offset;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        offset = transform.position - player.transform.position;
+        Refresh();
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    public void Refresh()
     {
-        transform.position = player.transform.position + offset;
+        if (player == null)
+        {
+            Debug.LogWarning("Missing player ref !", this);
+
+            return;
+        }
+
+        //Compute position
+        transform.position = player.TransformPoint(offset);
+        //Compute rotation
+        transform.LookAt(player);
     }
 }

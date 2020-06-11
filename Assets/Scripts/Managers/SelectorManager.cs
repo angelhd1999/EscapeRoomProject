@@ -134,6 +134,8 @@ public class SelectorManager : MonoBehaviour
             Debug.Log("Achieved");
             //Make sound of pick gold.
             _selectionR.gameObject.SetActive(false);
+            pose.GetComponent<TrackingReceiver>().enabled = false; //Stop posenet
+            pose.GetComponent<Animator>().SetBool("SceneOneDone", true);
 
         }
         float startTime = Time.time;
@@ -164,6 +166,8 @@ public class SelectorManager : MonoBehaviour
         if (firstObjectName == "Gold")
         {
             Debug.Log("Achieved");
+            //runningScript = false; //Stop posenet
+            //Door.GetComponent<Animator>().SetBool("PlaySafe", true);
 
         }
         while (couroutineRunnigL)
