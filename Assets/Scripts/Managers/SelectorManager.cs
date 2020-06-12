@@ -17,6 +17,7 @@ public class SelectorManager : MonoBehaviour
     [SerializeField] private Material BzMaterial;
     [SerializeField] private Material AgMaterial;
     [SerializeField] private float timeToPick = 0.75f;
+    [SerializeField] private float timeToDrop = 1f;
 
     private Material currentMaterial;
     private Transform _selectionR;
@@ -236,7 +237,7 @@ public class SelectorManager : MonoBehaviour
                     startTime = Time.time;
                     settedPosition = false;
                 }
-                if (Time.time - startTime > 3f)
+                if (Time.time - startTime > timeToDrop)
                 {
                     //Debug.Log("Dropped");
                     selection.gameObject.layer = 0;
@@ -268,7 +269,7 @@ public class SelectorManager : MonoBehaviour
                     startTime = Time.time;
                     settedPosition = false;
                 }
-                if (Time.time - startTime > 3f)
+                if (Time.time - startTime > timeToDrop)
                 {
                     //Debug.Log("Dropped");
                     selection.gameObject.layer = 0;

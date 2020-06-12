@@ -7,9 +7,10 @@ public class WeightScale : MonoBehaviour
 
     public float combinedForce;
     public float calculatedMass;
-    public GameObject PhysicsManager;
-
     public int registeredRigidbodies;
+
+    [SerializeField] private GameObject PhysicsManager;
+    [SerializeField] private GameObject Safe;
 
     Dictionary<Rigidbody, float> impulsePerRigidBody = new Dictionary<Rigidbody, float>();
 
@@ -33,6 +34,7 @@ public class WeightScale : MonoBehaviour
         }
 
         calculatedMass = (float)(combinedForce * forceToMass);
+        Safe.GetComponent<MesureMovement>().UpdateMesures();
     }
 
     private void FixedUpdate()

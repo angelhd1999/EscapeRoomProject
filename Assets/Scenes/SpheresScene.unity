@@ -21534,8 +21534,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combinedForce: 0
   calculatedMass: 0
-  PhysicsManager: {fileID: 1906533520}
   registeredRigidbodies: 0
+  PhysicsManager: {fileID: 1906533520}
+  Safe: {fileID: 1501702165}
 --- !u!54 &656604565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22788,6 +22789,7 @@ MonoBehaviour:
   BzMaterial: {fileID: 2100000, guid: 8fbf7a9605848bb47a2e9d11f8af1b40, type: 2}
   AgMaterial: {fileID: 2100000, guid: 2a8234130e7aeb8488b60a145af9e858, type: 2}
   timeToPick: 0.75
+  timeToDrop: 1
   couroutineRunnigR: 0
 --- !u!4 &934341808
 Transform:
@@ -25056,8 +25058,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combinedForce: 0
   calculatedMass: 0
-  PhysicsManager: {fileID: 1906533520}
   registeredRigidbodies: 0
+  PhysicsManager: {fileID: 1906533520}
+  Safe: {fileID: 1501702165}
 --- !u!54 &1299887284
 Rigidbody:
   m_ObjectHideFlags: 0
