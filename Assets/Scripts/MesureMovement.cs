@@ -12,6 +12,7 @@ public class MesureMovement : MonoBehaviour
     public GameObject Door;
     
     private float totalWeight;
+    private int totalSpheres;
     private Vector3 initPositionLM;
     private Vector3 initPositionRM;
     private float moveDist = 26.5f;
@@ -33,6 +34,7 @@ public class MesureMovement : MonoBehaviour
     {
         if (runningScript) 
         {
+            totalSpheres = LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies;
             totalWeight = LWScale.GetComponent<WeightScale>().calculatedMass + RWScale.GetComponent<WeightScale>().calculatedMass;
             //Debug.Log(totalWeight);
             if (totalWeight != 0)
@@ -47,14 +49,19 @@ public class MesureMovement : MonoBehaviour
                 LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
                 RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
+            if(totalSpheres == 2)
+            {
+                this.GetComponent<AudioSource>().Play();
+            }
             //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
             //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
             
-            //if(true) to test the transition.
-            if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies == spheresNum)
-            {
-                runningScript = false;
+            //if(true) //To test the transition.
+            if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
+                {
+                    runningScript = false;
                 Door.GetComponent<Animator>().SetBool("PlaySafe", true);
+                Door.GetComponent<AudioSource>().Play();
                 //Door.GetComponent<Animator>().SetTrigger("OpenSafe"); Only necessary if culling mode is on Cull Completely.
             }
         }

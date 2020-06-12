@@ -134,6 +134,7 @@ public class SelectorManager : MonoBehaviour
         {
             Debug.Log("Achieved");
             //Make sound of pick gold.
+            firstObjectSelected.gameObject.GetComponent<AudioSource>().Play();
             _selectionR.gameObject.SetActive(false);
             GameStateManager.GetComponent<GameStateManager>().preTubesScene();
             this.gameObject.SetActive(false);
@@ -167,6 +168,7 @@ public class SelectorManager : MonoBehaviour
         {
             Debug.Log("Achieved");
             //Make sound of pick gold.
+            firstObjectSelected.gameObject.GetComponent<AudioSource>().Play();
             _selectionR.gameObject.SetActive(false);
             GameStateManager.GetComponent<GameStateManager>().preTubesScene();
             this.gameObject.SetActive(false);
@@ -196,6 +198,7 @@ public class SelectorManager : MonoBehaviour
             if (!couroutineMovingR)
             {
                 couroutineMovingR = true;
+                selection.gameObject.GetComponent<AudioSource>().Play();
                 StartCoroutine(MoveSphere(selection, hand));
             }
         }
@@ -204,6 +207,7 @@ public class SelectorManager : MonoBehaviour
             if (!couroutineMovingL)
             {
                 couroutineMovingL = true;
+                selection.gameObject.GetComponent<AudioSource>().Play();
                 StartCoroutine(MoveSphere(selection, hand));
             }
         }
