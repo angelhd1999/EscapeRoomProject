@@ -18,6 +18,7 @@ public class MesureMovement : MonoBehaviour
     private float moveDist = 26.5f;
     private float LRelation;
     private float RRelation;
+    private bool pebbleDone = false;
     private bool runningScript = true;
     private int spheresNum = 5;
 
@@ -49,9 +50,9 @@ public class MesureMovement : MonoBehaviour
                 LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
                 RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
-            if(totalSpheres == 2)
+            if(!pebbleDone)
             {
-                this.GetComponent<AudioSource>().Play();
+                PebbleFalling();
             }
             //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
             //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
@@ -66,5 +67,14 @@ public class MesureMovement : MonoBehaviour
             }
         }
         
+    }
+
+    void PebbleFalling()
+    {
+        if (totalSpheres == 2)
+        {
+            pebbleDone = true;
+            this.GetComponent<AudioSource>().Play();
+        }
     }
 }
