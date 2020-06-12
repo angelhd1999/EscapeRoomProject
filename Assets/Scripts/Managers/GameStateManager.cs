@@ -13,8 +13,6 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Transform rWrist;
     [SerializeField] private GameObject particles;
 
-    public AudioSource animationSound;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,7 +33,6 @@ public class GameStateManager : MonoBehaviour
         pose.GetComponent<TrackingReceiver>().enabled = false; //Stop posenet
         pose.GetComponent<Animator>().SetBool("SceneOneDone", true);
         //Make earthquake sound
-        animationSound.Play();
         head.position = new Vector3(0, 180, 0);
         lWrist.position = new Vector3(-120, 0, 0);
         rWrist.position = new Vector3(120, 0, 0);
