@@ -43,5 +43,20 @@ public class GameStateManager : MonoBehaviour
     {
         SceneManager.LoadScene("TubesScene");
     }
+
+    public void initTubesScene()
+    {
+        pose.GetComponent<Animator>().SetBool("StartTubes", true);
+        //Make earthquake sound
+        GetComponent<AudioSource>().Play();
+    }
+
+    public void startTubesScene()
+    {
+        pose.GetComponent<TrackingReceiver>().enabled = true; //Start posenet
+        particles.gameObject.SetActive(false);
+    }
+
+
 }
 
