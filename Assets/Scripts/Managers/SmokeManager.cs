@@ -7,35 +7,31 @@ public class SmokeManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose;
     [SerializeField] private string selectableTag = "Selectable";
-    [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material defaultMaterial;
 
     private Transform _selectionR;
     private Transform _selectionL;
     private string objectNameR;
     private string objectNameL;
-    [SerializeField] private bool couroutineRunnigR = false;
-    private bool couroutineRunnigL = false;
-    private bool couroutineMovingR = false;
-    private bool couroutineMovingL = false;
-    private bool setRight = true;
-    private bool setLeft = false;
     Vector3 hitPointR;
     Vector3 hitPointL;
 
+    /*Selected cranks*/
     private GameObject selectedCrankRight = null;
     private GameObject selectedCrankLeft = null;
 
-    public float colorChangeTolerance;
-    public int colorComparationTolerance;
+    public float colorChangeTolerance; //Velocity where color changes.
+    public int colorComparationTolerance; //Tolerance to compare smoke and ball color.
     public GameObject smoke;
     public GameObject sphere;
+
+    private int counter; //Color achieved counter.
 
     Dictionary<string, int> ballColors = new Dictionary<string, int>();
 
     // Start is called before the first frame update
     void Start()
     {
+        this.counter = 0; //Start counter at 0.
         this.changeBallColor();
     }
 
@@ -62,12 +58,10 @@ public class SmokeManager : MonoBehaviour
             var selection = hitR.transform;
             if (selection.CompareTag(selectableTag))
             {
-                //Debug.Log(hitR.collider.gameObject.name);
                 _selectionR = selection;
                 objectNameR = hitR.collider.gameObject.name;
 
                 //Assing selected crank.
-                //Debug.Log(objectNameR);
                 if(selectedCrankRight != null && !selectedCrankRight.name.Equals(objectNameR))
                 {
                     selectedCrankRight.GetComponent<RotateObject>().enabled = false;
@@ -76,11 +70,6 @@ public class SmokeManager : MonoBehaviour
                 selectedCrankRight = hitR.collider.gameObject;
                 //RotateCrank.
                 rotateCrank(selectedCrankRight, new Vector3(0, 0, -1), "right");
-
-                /*Rotate with vector (0, 0, -1) and velocity 50*/
-                /*Increase RGB value of color selected (max 1)*/
-                //HighlightSphere(_selectionR, objectNameR);
-                //CheckPick(setRight);
             }
             else
             {
@@ -95,9 +84,13 @@ public class SmokeManager : MonoBehaviour
         }
         else
         {
+            if(selectedCrankRight != null)
+                {
+                selectedCrankRight.GetComponent<RotateObject>().enabled = false;
+                selectedCrankRight = null;
+            }
             objectNameR = "";
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position) * 1000, Color.white);
-            //Debug.Log("Did not Hit");
         }
         //Left Wrist
         RaycastHit hitL;
@@ -108,7 +101,6 @@ public class SmokeManager : MonoBehaviour
             var selection = hitL.transform;
             if (selection.CompareTag(selectableTag))
             {
-                //Debug.Log(hitL.collider.gameObject.name);
                 _selectionL = selection;
                 objectNameL = hitL.collider.gameObject.name;
 
@@ -121,14 +113,14 @@ public class SmokeManager : MonoBehaviour
                 selectedCrankLeft = hitL.collider.gameObject;
                 //RotateCrank.
                 rotateCrank(selectedCrankLeft, new Vector3(0, 0, 1), "left");
-
-                /*Rotate with vector (0, 0, 1) and velocity 50*/
-                /*Decrease RGB value of color selected (min 0)*/
-                //HighlightSphere(_selectionL, objectNameL);
-                //CheckPick(setLeft);
             }
             else
             {
+                if (selectedCrankLeft != null)
+                {
+                    selectedCrankLeft.GetComponent<RotateObject>().enabled = false;
+                    selectedCrankLeft = null;
+                }
                 objectNameL = hitL.collider.gameObject.name; //The object is not selectable.
                 hitPointL = hitL.point; //Point where object hit.
             }
@@ -142,12 +134,13 @@ public class SmokeManager : MonoBehaviour
             }
             objectNameL = "";
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position) * 1000, Color.white);
-            //Debug.Log("Did not Hit");
         }
 
+        //If the smoke and ball color are equal.
         if (smokeBallEqualColor())
         {
-            changeBallColor();
+            counter++; //Add one to the counter.
+            changeBallColor(); //Change ball color.
         }
     }
 
@@ -200,7 +193,8 @@ public class SmokeManager : MonoBehaviour
         }
     }
 
-    //With absolute value
+    /* Instead of using this function a variable called hand was added to rotateCrank function.
+    //Function to compare two Vector3 with an allowedDifference.
     public bool Approximately(Vector3 me, Vector3 other, float allowedDifference)
     {
         var dx = me.x - other.x;
@@ -215,6 +209,7 @@ public class SmokeManager : MonoBehaviour
 
         return Mathf.Abs(dz) >= allowedDifference;
     }
+    */
 
 
     bool smokeBallEqualColor()
@@ -223,22 +218,21 @@ public class SmokeManager : MonoBehaviour
 
         Dictionary<string, int> smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
 
-        Debug.Log("Blue ball "+ ballColors["blue"]+" Blue smoke"+ smokeColors["blue"]);
         if (ballColors["red"] - colorComparationTolerance < smokeColors["red"] && smokeColors["red"] < ballColors["red"] + colorComparationTolerance)
         {
-            Debug.Log("Red OK");
+            //Debug.Log("Red OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors["green"] - colorComparationTolerance < smokeColors["green"] && smokeColors["green"] < ballColors["green"] + colorComparationTolerance)
         {
-            Debug.Log("Green OK");
+            //Debug.Log("Green OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors["blue"] - colorComparationTolerance < smokeColors["blue"] && smokeColors["blue"] < ballColors["blue"] + colorComparationTolerance)
         {
-            Debug.Log("Blue OK");
+            //Debug.Log("Blue OK"); //Control log.
             colorCount++;
         }
 
