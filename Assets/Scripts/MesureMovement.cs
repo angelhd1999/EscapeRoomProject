@@ -27,9 +27,6 @@ public class MesureMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //LWeight = LWScale.GetComponent<WeightScale>().calculatedMass;
-        //RWeight = RWScale.GetComponent<WeightScale>().calculatedMass;
-        //totalWeight = LWeight + RWeight;
         initPositionLM = LMesure.transform.position + new Vector3(0, -26.5f, 0);
         initPositionRM = RMesure.transform.position + new Vector3(0, -26.5f, 0);
     }
@@ -45,8 +42,13 @@ public class MesureMovement : MonoBehaviour
             //Debug.Log(totalWeight);
             if (totalWeight != 0)
             {
+                //Debug.LogError("LWeight: " + LWeight);
+                //Debug.LogError("RWeight: " + RWeight);
+                //Debug.LogError("totalWeight: " + totalWeight);
                 LRelation = LWeight / totalWeight;
                 RRelation = 1f - LRelation;
+                //Debug.LogError("LRelation: " + LRelation);
+                //Debug.LogError("RRelation: " + RRelation);
                 LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0);
                 RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
             }
@@ -73,96 +75,6 @@ public class MesureMovement : MonoBehaviour
         }
 
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (runningScript)
-    //    {
-    //        totalSpheres = LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies;
-    //        LWeight = LWScale.GetComponent<WeightScale>().calculatedMass;
-    //        RWeight = RWScale.GetComponent<WeightScale>().calculatedMass;
-    //        totalWeight = LWeight + RWeight;
-    //        //Debug.Log(totalWeight);
-    //        if (totalWeight != 0)
-    //        {
-    //            LRelation = LWeight / totalWeight;
-    //            RRelation = 1f - LRelation;
-    //            LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0);
-    //            RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
-    //        }
-    //        else
-    //        {
-    //            LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
-    //            RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
-    //        }
-    //        if (!pebbleDone)
-    //        {
-    //            PebbleFalling();
-    //        }
-    //        //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
-    //        //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
-
-    //        //if(true) //To test the transition.
-    //        if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
-    //        {
-    //            runningScript = false;
-    //            Door.GetComponent<Animator>().SetBool("PlaySafe", true);
-    //            Door.GetComponent<AudioSource>().Play();
-    //            //Door.GetComponent<Animator>().SetTrigger("OpenSafe"); Only necessary if culling mode is on Cull Completely.
-    //        }
-    //    }
-
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (runningScript) 
-    //    {
-    //        totalSpheres = LWScale.GetComponent<WeightScale>().registeredRigidbodies + RWScale.GetComponent<WeightScale>().registeredRigidbodies;
-    //        LWeight = LWScale.GetComponent<WeightScale>().calculatedMass;
-    //        RWeight = RWScale.GetComponent<WeightScale>().calculatedMass;
-    //        totalWeight = LWeight + RWeight;
-
-    //    }
-
-    //}
-
-    //private void LateUpdate()
-    //{
-    //    if (runningScript)
-    //    {
-    //        //Debug.Log(totalWeight);
-    //        if (totalWeight != 0)
-    //        {
-    //            LRelation = LWeight / totalWeight;
-    //            RRelation = 1f - LRelation;
-    //            LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0);
-    //            RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
-    //        }
-    //        else
-    //        {
-    //            LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
-    //            RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
-    //        }
-    //        if (!pebbleDone)
-    //        {
-    //            PebbleFalling();
-    //        }
-    //        //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
-    //        //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
-
-    //        //if(true) //To test the transition.
-    //        if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
-    //        {
-    //            runningScript = false;
-    //            Door.GetComponent<Animator>().SetBool("PlaySafe", true);
-    //            Door.GetComponent<AudioSource>().Play();
-    //            //Door.GetComponent<Animator>().SetTrigger("OpenSafe"); Only necessary if culling mode is on Cull Completely.
-    //        }
-    //    }
-    //}
 
     void PebbleFalling()
     {

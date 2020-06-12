@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class WeightScale : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class WeightScale : MonoBehaviour
 
         foreach (var force in impulsePerRigidBody.Values)
         {
-            combinedForce += force;
+            combinedForce += Math.Abs(force);
         }
 
         calculatedMass = (float)(combinedForce * forceToMass);
