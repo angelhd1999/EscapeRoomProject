@@ -190,6 +190,7 @@ public class SmokeManager : MonoBehaviour
             default:
                 break;
         }
+        crank.GetComponent<AudioSource>().Play();
     }
 
     /* Instead of using this function a variable called hand was added to rotateCrank function.
