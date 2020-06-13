@@ -6,6 +6,7 @@ public class SmokeManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose;
     [SerializeField] private string selectableTag = "Selectable";
+    [SerializeField] private GameObject rock;
 
     private Transform _selectionR;
     private Transform _selectionL;
@@ -139,7 +140,15 @@ public class SmokeManager : MonoBehaviour
         if (smokeBallEqualColor())
         {
             counter++; //Add one to the counter.
-            changeBallColor(); //Change ball color.
+            if(counter == 1)
+            {
+                changeBallColor(); //Change ball color.
+                rock.GetComponent<Animator>().SetBool("FirstColor", true);
+            }
+            if(counter == 2)
+            {
+                rock.GetComponent<Animator>().SetBool("SecondColor", true);
+            }
         }
     }
 
@@ -163,7 +172,6 @@ public class SmokeManager : MonoBehaviour
                 else smoke.GetComponent<SmokeScript>().increaseColor(-colorChangeTolerance, 0.0f, 0.0f);
                 break;
             case "Green Cross":
-                Debug.Log("Color " + smokeColors["green"]);
                 if ((String.Equals(hand, "right") && smokeColors["green"] >= 254) || (String.Equals(hand, "left") && smokeColors["green"] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;
@@ -220,19 +228,19 @@ public class SmokeManager : MonoBehaviour
 
         if (ballColors["red"] - colorComparationTolerance < smokeColors["red"] && smokeColors["red"] < ballColors["red"] + colorComparationTolerance)
         {
-            //Debug.Log("Red OK"); //Control log.
+            Debug.Log("Red OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors["green"] - colorComparationTolerance < smokeColors["green"] && smokeColors["green"] < ballColors["green"] + colorComparationTolerance)
         {
-            //Debug.Log("Green OK"); //Control log.
+            Debug.Log("Green OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors["blue"] - colorComparationTolerance < smokeColors["blue"] && smokeColors["blue"] < ballColors["blue"] + colorComparationTolerance)
         {
-            //Debug.Log("Blue OK"); //Control log.
+            Debug.Log("Blue OK"); //Control log.
             colorCount++;
         }
 
