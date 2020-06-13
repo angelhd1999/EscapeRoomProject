@@ -12,6 +12,11 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Transform lWrist;
     [SerializeField] private Transform rWrist;
     [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject openRock;
+    [SerializeField] private GameObject sun;
+
+    private bool isSphereScene = true;
+    private bool initDone = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,13 +24,48 @@ public class GameStateManager : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "SpheresScene")
+        {
+            isSphereScene = true;
+        } else
+        {
+            isSphereScene = false;
+            initTubesScene();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("SpheresScene");
         }
+        if (!initDone)
+        {
+            if (isSphereScene)
+            {
+                //
+            }
+            else
+            {
+                if (pose.transform.position.z == 0f)
+                {
+                    startTubesScene();
+                    initDone = true;
+                }
+            }
+        }
+           
+        
+    }
+
+    public void initSpheresScene()
+    {
+        pose.GetComponent<Animator>().SetBool("FirstScene", true);
+        
     }
 
     public void preTubesScene()
@@ -54,6 +94,23 @@ public class GameStateManager : MonoBehaviour
     {
         pose.GetComponent<TrackingReceiver>().enabled = true; //Start posenet
         particles.gameObject.SetActive(false);
+    }
+
+    public void preEndTubesScene()
+    {
+        openRock.GetComponent<Animator>().SetBool("FirstColor", true);
+    }
+
+
+    public void endTubesScene()
+    {
+        pose.GetComponent<TrackingReceiver>().enabled = false;
+        head.position = new Vector3(0, 180, 0);
+        lWrist.position = new Vector3(-120, 0, 0);
+        rWrist.position = new Vector3(120, 0, 0);
+        pose.GetComponent<Animator>().SetBool("WalkingToSun", true);
+        openRock.GetComponent<Animator>().SetBool("SecondColor", true);
+        sun.GetComponent<Animator>().SetBool("StartFlare", true);
     }
 
 

@@ -1153,6 +1153,8 @@ MonoBehaviour:
   lWrist: {fileID: 169564934}
   rWrist: {fileID: 2122282093}
   particles: {fileID: 937576437}
+  openRock: {fileID: 1372469010}
+  sun: {fileID: 1023574154}
 --- !u!1 &200289938
 GameObject:
   m_ObjectHideFlags: 0
@@ -23228,12 +23230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pose: {fileID: 2048712220}
+  GameStateManager: {fileID: 196569634}
   selectableTag: Selectable
-  rock: {fileID: 1372469010}
-  sun: {fileID: 1023574154}
-  head: {fileID: 761990084}
-  lWrist: {fileID: 169564934}
-  rWrist: {fileID: 2122282093}
   colorChangeTolerance: 0.001
   colorComparationTolerance: 20
   smoke: {fileID: 1800407990}
@@ -45066,7 +45064,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048712220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c91a6efbbb0f74b954bd59e1c6e244, type: 3}
   m_Name: 

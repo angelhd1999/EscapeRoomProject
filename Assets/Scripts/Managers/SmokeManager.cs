@@ -5,13 +5,8 @@ using UnityEngine;
 public class SmokeManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose;
+    [SerializeField] private GameObject GameStateManager;
     [SerializeField] private string selectableTag = "Selectable";
-    [SerializeField] private GameObject rock;
-    [SerializeField] private GameObject sun;
-    [SerializeField] private Transform head;
-    [SerializeField] private Transform lWrist;
-    [SerializeField] private Transform rWrist;
-
     private Transform _selectionR;
     private Transform _selectionL;
     private string objectNameR;
@@ -151,17 +146,11 @@ public class SmokeManager : MonoBehaviour
             if(counter == 1)
             {
                 changeBallColor(); //Change ball color.
-                rock.GetComponent<Animator>().SetBool("FirstColor", true);
+                GameStateManager.GetComponent<GameStateManager>().preEndTubesScene();
             }
             if(counter == 2)
             {
-                pose.GetComponent<TrackingReceiver>().enabled = false;
-                head.position = new Vector3(0, 180, 0);
-                lWrist.position = new Vector3(-120, 0, 0);
-                rWrist.position = new Vector3(120, 0, 0);
-                rock.GetComponent<Animator>().SetBool("SecondColor", true);
-                sun.GetComponent<Animator>().SetBool("StartFlare", true);
-                pose.GetComponent<Animator>().SetBool("WalkingToSun", true);
+                GameStateManager.GetComponent<GameStateManager>().endTubesScene();
             }
         }
     }
