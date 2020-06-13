@@ -7,6 +7,10 @@ public class SmokeManager : MonoBehaviour
     [SerializeField] private GameObject pose;
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private GameObject rock;
+    [SerializeField] private GameObject sun;
+    [SerializeField] private Transform head;
+    [SerializeField] private Transform lWrist;
+    [SerializeField] private Transform rWrist;
 
     private Transform _selectionR;
     private Transform _selectionL;
@@ -34,6 +38,9 @@ public class SmokeManager : MonoBehaviour
         this.counter = 0; //Start counter at 0.
         this.changeBallColor();
     }
+
+    //Debug
+    
 
     void changeBallColor()
     {
@@ -137,7 +144,8 @@ public class SmokeManager : MonoBehaviour
         }
 
         //If the smoke and ball color are equal.
-        if (smokeBallEqualColor())
+        if (smokeBallEqualColor() || Input.GetKeyDown("space")) //To Debug
+        //if (smokeBallEqualColor() || Input.GetKeyDown("space"))
         {
             counter++; //Add one to the counter.
             if(counter == 1)
@@ -147,7 +155,13 @@ public class SmokeManager : MonoBehaviour
             }
             if(counter == 2)
             {
+                pose.GetComponent<TrackingReceiver>().enabled = false;
+                head.position = new Vector3(0, 180, 0);
+                lWrist.position = new Vector3(-120, 0, 0);
+                rWrist.position = new Vector3(120, 0, 0);
                 rock.GetComponent<Animator>().SetBool("SecondColor", true);
+                sun.GetComponent<Animator>().SetBool("StartFlare", true);
+                pose.GetComponent<Animator>().SetBool("WalkingToSun", true);
             }
         }
     }

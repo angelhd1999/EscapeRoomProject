@@ -47,7 +47,6 @@ public class GameStateManager : MonoBehaviour
     public void initTubesScene()
     {
         pose.GetComponent<Animator>().SetBool("StartTubes", true);
-        //Make earthquake sound
         GetComponent<AudioSource>().Play();
     }
 
