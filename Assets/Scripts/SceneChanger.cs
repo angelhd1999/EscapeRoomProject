@@ -28,6 +28,7 @@ public class SceneChanger : MonoBehaviour
             }
             if (other.name == "Exit")
             {
+                Debug.Log("Exiting");
                 GameStateManager.GetComponent<GameStateManager>().ExitGame();
             }
 

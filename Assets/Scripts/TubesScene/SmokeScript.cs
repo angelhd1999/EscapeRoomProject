@@ -5,12 +5,11 @@ using UnityEngine;
 public class SmokeScript : MonoBehaviour
 {
 
-    Renderer rend;
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<Renderer>();
-    }
+        this.getCurrentColor();
+        }
 
     // Update is called once per frame
     void Update()
@@ -21,13 +20,13 @@ public class SmokeScript : MonoBehaviour
     //Set color in RGB values from 0 to 255.
     void setColor(int red, int green, int blue)
     {
-        rend.material.color = new Color(coloNumberConversion(red), coloNumberConversion(green), coloNumberConversion(blue));
+        this.GetComponent<Renderer>().material.color = new Color(coloNumberConversion(red), coloNumberConversion(green), coloNumberConversion(blue));
     }
     
     //RGB mode.
     void increaseColor(int red, int green, int blue)
     {
-        Color currentColor = rend.material.GetColor("_Color");
+        Color currentColor = this.GetComponent<Renderer>().material.GetColor("_Color");
 
         int newRed = (int)currentColor.a*255;
         int newGreen = (int)currentColor.b * 255;
@@ -39,17 +38,17 @@ public class SmokeScript : MonoBehaviour
         //If it is possible increase color.
         if (newRed >= 0 && newRed <= 255)
         {
-            rend.material.color = new Color(coloNumberConversion(newRed), currentColor.b, currentColor.g);
+            this.GetComponent<Renderer>().material.color = new Color(coloNumberConversion(newRed), currentColor.b, currentColor.g);
         }
 
         if (newGreen >= 0 && newGreen <= 255)
         {
-            rend.material.color = new Color(currentColor.a, coloNumberConversion(newGreen), currentColor.g);
+            this.GetComponent<Renderer>().material.color = new Color(currentColor.a, coloNumberConversion(newGreen), currentColor.g);
         }
 
         if (newBlue >= 0 && newBlue <= 255)
         {
-            rend.material.color = new Color(currentColor.a, currentColor.b, coloNumberConversion(newBlue));
+            this.GetComponent<Renderer>().material.color = new Color(currentColor.a, currentColor.b, coloNumberConversion(newBlue));
         }
 
     }
@@ -57,7 +56,7 @@ public class SmokeScript : MonoBehaviour
     //Percentatge mode.
     public void increaseColor(float red, float green, float blue)
     {
-        Color currentColor = rend.material.GetColor("_Color");
+        Color currentColor = this.GetComponent<Renderer>().material.GetColor("_Color");
 
         //Debug.Log(currentColor);
 
@@ -68,35 +67,36 @@ public class SmokeScript : MonoBehaviour
         //If it is possible increase color.
         if (newRed >= 0f && newRed <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(newRed, currentColor.g, currentColor.b));
+            this.GetComponent<Renderer>().material.SetColor("_Color", new Color(newRed, currentColor.g, currentColor.b));
         }
 
-        currentColor = rend.material.GetColor("_Color");
+        currentColor = this.GetComponent<Renderer>().material.GetColor("_Color");
 
         if (newGreen >= 0f && newGreen <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(currentColor.r, newGreen, currentColor.b));
+            this.GetComponent<Renderer>().material.SetColor("_Color", new Color(currentColor.r, newGreen, currentColor.b));
         }
 
-        currentColor = rend.material.GetColor("_Color");
+        currentColor = this.GetComponent<Renderer>().material.GetColor("_Color");
         //Debug.Log("After set"+currentColor);
 
         if (newBlue >= 0f && newBlue <= 1.0f)
         {
-            rend.material.SetColor("_Color", new Color(currentColor.r, currentColor.g, newBlue));
+            this.GetComponent<Renderer>().material.SetColor("_Color", new Color(currentColor.r, currentColor.g, newBlue));
         }
 
     }
 
-    public Dictionary<string, int> getCurrentColor()
+    public int[] getCurrentColor()
     {
-        Dictionary<string, int> smokeColors = new Dictionary<string, int>();
 
-        Color currentColor = rend.material.GetColor("_Color");
+        Color currentColor = this.GetComponent<Renderer>().material.GetColor("_Color");
 
-        smokeColors.Add("red", (int)(currentColor.r * 255));
-        smokeColors.Add("green", (int)(currentColor.g * 255));
-        smokeColors.Add("blue", (int)(currentColor.b * 255));
+        int[] smokeColors = new int[3];
+
+        smokeColors[0] = (int)(currentColor.r * 255);
+        smokeColors[1] = (int)(currentColor.g * 255);
+        smokeColors[2] = (int)(currentColor.b * 255);
 
         return smokeColors;
     }

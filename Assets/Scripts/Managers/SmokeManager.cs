@@ -25,11 +25,12 @@ public class SmokeManager : MonoBehaviour
 
     private int counter; //Color achieved counter.
 
-    Dictionary<string, int> ballColors = new Dictionary<string, int>();
+    private int[] ballColors;
 
     // Start is called before the first frame update
     void Start()
     {
+        ballColors = new int[3];
         this.counter = 0; //Start counter at 0.
         this.changeBallColor();
     }
@@ -41,11 +42,28 @@ public class SmokeManager : MonoBehaviour
     {
         System.Random r = new System.Random();
 
-        ballColors["red"] = r.Next(0, 256);
-        ballColors["green"] = r.Next(0, 256);
-        ballColors["blue"] = r.Next(0, 256);
+       int[] smokeColors =  smoke.GetComponent<SmokeScript>().getCurrentColor();
 
-        sphere.GetComponent<ColorBall>().setColor(ballColors["red"], ballColors["green"], ballColors["blue"]);
+        ballColors[0] = r.Next(0, 256);
+        ballColors[1] = r.Next(0, 256);
+        ballColors[2] = r.Next(0, 256);
+
+        while (ballColors[0] - colorComparationTolerance < smokeColors[0] && smokeColors[0] < ballColors[0] + colorComparationTolerance)
+        {
+            ballColors[0] = r.Next(0, 256);
+        }
+
+        while (ballColors[1] - colorComparationTolerance < smokeColors[1] && smokeColors[1] < ballColors[1] + colorComparationTolerance)
+        {
+            ballColors[1] = r.Next(0, 256);
+        }
+
+        while (ballColors[2] - colorComparationTolerance < smokeColors[2] && smokeColors[2] < ballColors[2] + colorComparationTolerance)
+        {
+            ballColors[2] = r.Next(0, 256);
+        }
+
+        sphere.GetComponent<ColorBall>().setColor(ballColors[0], ballColors[1], ballColors[2]);
     }
 
     // Update is called once per frame
@@ -158,12 +176,12 @@ public class SmokeManager : MonoBehaviour
     void rotateCrank(GameObject crank, Vector3 rotationVector, string hand)
     {
         crank.GetComponent<RotateObject>().setVector(rotationVector);
-        Dictionary<string, int> smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
+        int[] smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
         //What crank was selected.
         switch (crank.name)
         {
             case "Red Cross":
-                if ((String.Equals(hand, "right") && smokeColors["red"] >= 254) || (String.Equals(hand, "left") && smokeColors["red"] == 0))
+                if ((String.Equals(hand, "right") && smokeColors[0] >= 254) || (String.Equals(hand, "left") && smokeColors[0] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;
                 }
@@ -175,7 +193,7 @@ public class SmokeManager : MonoBehaviour
                 else smoke.GetComponent<SmokeScript>().increaseColor(-colorChangeTolerance, 0.0f, 0.0f);
                 break;
             case "Green Cross":
-                if ((String.Equals(hand, "right") && smokeColors["green"] >= 254) || (String.Equals(hand, "left") && smokeColors["green"] == 0))
+                if ((String.Equals(hand, "right") && smokeColors[1] >= 254) || (String.Equals(hand, "left") && smokeColors[1] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;
                 }
@@ -187,7 +205,7 @@ public class SmokeManager : MonoBehaviour
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -colorChangeTolerance, 0.0f);
                 break;
             case "Blue Cross":
-                if ((String.Equals(hand, "right") && smokeColors["blue"] >= 254) || (String.Equals(hand, "left") && smokeColors["blue"] == 0))
+                if ((String.Equals(hand, "right") && smokeColors[2] >= 254) || (String.Equals(hand, "left") && smokeColors[2] == 0))
                 {
                     crank.GetComponent<RotateObject>().enabled = false;
                 }
@@ -201,7 +219,11 @@ public class SmokeManager : MonoBehaviour
             default:
                 break;
         }
-        crank.GetComponent<AudioSource>().Play();
+        
+        if (!crank.GetComponent<AudioSource>().isPlaying)
+        {
+            crank.GetComponent<AudioSource>().Play();
+        }
     }
 
     /* Instead of using this function a variable called hand was added to rotateCrank function.
@@ -227,21 +249,21 @@ public class SmokeManager : MonoBehaviour
     {
         int colorCount = 0;
 
-        Dictionary<string, int> smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
+        int[] smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
 
-        if (ballColors["red"] - colorComparationTolerance < smokeColors["red"] && smokeColors["red"] < ballColors["red"] + colorComparationTolerance)
+        if (ballColors[0] - colorComparationTolerance < smokeColors[0] && smokeColors[0] < ballColors[0] + colorComparationTolerance)
         {
             Debug.Log("Red OK"); //Control log.
             colorCount++;
         }
 
-        if (ballColors["green"] - colorComparationTolerance < smokeColors["green"] && smokeColors["green"] < ballColors["green"] + colorComparationTolerance)
+        if (ballColors[1] - colorComparationTolerance < smokeColors[1] && smokeColors[1] < ballColors[1] + colorComparationTolerance)
         {
             Debug.Log("Green OK"); //Control log.
             colorCount++;
         }
 
-        if (ballColors["blue"] - colorComparationTolerance < smokeColors["blue"] && smokeColors["blue"] < ballColors["blue"] + colorComparationTolerance)
+        if (ballColors[2] - colorComparationTolerance < smokeColors[2] && smokeColors[2] < ballColors[2] + colorComparationTolerance)
         {
             Debug.Log("Blue OK"); //Control log.
             colorCount++;
