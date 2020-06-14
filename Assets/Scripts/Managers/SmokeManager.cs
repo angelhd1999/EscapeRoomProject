@@ -140,7 +140,7 @@ public class SmokeManager : MonoBehaviour
 
         //If the smoke and ball color are equal.
         if (smokeBallEqualColor() || Input.GetKeyDown("space")) //To Debug
-        //if (smokeBallEqualColor() || Input.GetKeyDown("space"))
+        //if (smokeBallEqualColor())
         {
             counter++; //Add one to the counter.
             if(counter == 1)

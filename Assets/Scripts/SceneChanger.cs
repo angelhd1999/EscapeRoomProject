@@ -24,10 +24,13 @@ public class SceneChanger : MonoBehaviour
         {
             if(other.name == "Tubes")
             {
-                Debug.Log("To tubes scene!");
                 GameStateManager.GetComponent<GameStateManager>().goTubesScene();
             }
-            
+            if (other.name == "Exit")
+            {
+                GameStateManager.GetComponent<GameStateManager>().ExitGame();
+            }
+
         }
     }
 }

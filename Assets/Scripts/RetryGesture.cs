@@ -8,6 +8,8 @@ public class RetryGesture : MonoBehaviour
     public GameObject head;
     public GameObject UI;
     public bool canRetry = false;
+    public bool wannaExit = false;
+    public bool wannaStay = false;
 
     private float yesInitPosition;
     private float noInitPosition;
@@ -19,19 +21,19 @@ public class RetryGesture : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine("InitPosition");
+        StartCoroutine("UpYes");
+        StartCoroutine("LeftNo");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canRetry)
-        {
-            canRetry = false;
-            StartCoroutine("InitPosition");
-            StartCoroutine("UpYes");
-            StartCoroutine("LeftNo");
-        }
+        //if (canRetry)
+        //{
+        //    canRetry = false;
+            
+        //}
     }
 
     private IEnumerator InitPosition()
@@ -40,7 +42,7 @@ public class RetryGesture : MonoBehaviour
         {
             yesInitPosition = head.transform.position.y;
             noInitPosition = head.transform.position.x;
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(3.0f);
         }
     }
 
@@ -48,7 +50,7 @@ public class RetryGesture : MonoBehaviour
     {
         while(!upMade) 
         { 
-            if (head.transform.position.y > yesInitPosition + 50)
+            if (head.transform.position.y > yesInitPosition + 20)
             {
                 upMade = true;
                 yield return StartCoroutine("DownYes");
@@ -62,11 +64,10 @@ public class RetryGesture : MonoBehaviour
     {
         while (!downMade)
         {
-            if (head.transform.position.y < yesInitPosition - 50)
+            if (head.transform.position.y < yesInitPosition - 30)
             {
                 downMade = true;
-                Debug.Log("Affirmative! --> Restart");
-                UI.GetComponent<UIManager>().RestartGame();
+                wannaStay = true;
             }
             yield return new WaitForSeconds(0.1f);
         }
@@ -92,8 +93,7 @@ public class RetryGesture : MonoBehaviour
             if (head.transform.position.x > noInitPosition + 50)
             {
                 rightMade = true;
-                Debug.Log("Negative! --> Exit");
-                UI.GetComponent<UIManager>().ExitGame();
+                wannaExit = true;
             }
             yield return new WaitForSeconds(0.1f);
         }
