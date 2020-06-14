@@ -17,12 +17,17 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject openRock;
     [SerializeField] private GameObject fallenRocks;
     [SerializeField] private GameObject sun;
+    [SerializeField] private GameObject sunLight;
+    [SerializeField] private GameObject exit;
+
 
     private bool isSphereScene = true;
     private bool initDone = false;
     private bool lookingMessage = false;
     private bool trackingEnabled = false;
     private Animator poseAnim;
+    private AudioSource firstRockOpen;
+    private AudioSource lastRockOpen;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +47,10 @@ public class GameStateManager : MonoBehaviour
             isSphereScene = false;
             initTubesScene();
         }
+        var rockSounds = openRock.GetComponents<AudioSource>();
+        firstRockOpen = rockSounds[0];
+        lastRockOpen = rockSounds[1];
+
     }
 
     // Update is called once per frame
@@ -70,7 +79,8 @@ public class GameStateManager : MonoBehaviour
                             pose.GetComponent<TrackingReceiver>().enabled = true; //Start posenet      
                             pose.GetComponent<RetryGesture>().enabled = true;
                         }
-                        
+                        lWrist.position = new Vector3(-120, 0, 0); //Desable abbility to take objects.
+                        rWrist.position = new Vector3(120, 0, 0);
                         if (pose.GetComponent<RetryGesture>().wannaExit)
                         {
                             pose.GetComponent<TrackingReceiver>().enabled = false; //Start posenet      
@@ -78,6 +88,7 @@ public class GameStateManager : MonoBehaviour
                             head.position = new Vector3(0, 180, 0);
                             lWrist.position = new Vector3(-120, 0, 0);
                             rWrist.position = new Vector3(120, 0, 0);
+                            StartCoroutine("makePassesSound");
                             message.GetComponent<Animator>().SetBool("endMessageFade", true);
                             background.GetComponent<Animator>().SetBool("endBackgroundFade", true);
                             poseAnim.SetBool("Escape", true);
@@ -151,6 +162,9 @@ public class GameStateManager : MonoBehaviour
     public void preEndTubesScene()
     {
         openRock.GetComponent<Animator>().SetBool("FirstColor", true);
+        firstRockOpen.Play();
+        sunLight.SetActive(true);
+        sunLight.GetComponent<Animator>().SetBool("initSunLight", true);
     }
 
 
@@ -161,8 +175,38 @@ public class GameStateManager : MonoBehaviour
         lWrist.position = new Vector3(-120, 0, 0);
         rWrist.position = new Vector3(120, 0, 0);
         poseAnim.SetBool("WalkingToSun", true);
+        StartCoroutine("makePassesSound");
         openRock.GetComponent<Animator>().SetBool("SecondColor", true);
+        lastRockOpen.Play();
         sun.GetComponent<Animator>().SetBool("StartFlare", true);
+    }
+
+    private IEnumerator makePassesSound()
+    {
+        if (isSphereScene)
+        {
+            while (true)
+            {
+                if (pose.transform.position.x != 0)
+                {
+                    exit.GetComponent<AudioSource>().Play();
+                    yield break;
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                if (pose.transform.position.x != 0)
+                {
+                    GetComponent<AudioSource>().Play();
+                    yield break;
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
     }
 
     public void ExitGame()
