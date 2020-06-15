@@ -16,10 +16,10 @@
 **User:** U149920<br />
 **Emails:** marc.furio01@estudiant.upf.edu<br />
 
-##Game intro
+## Game intro
 You embarked on an adventure with a group of explorers to find a treasure that is hidden in a cave. After walking cautiously for a while, you have reached a very dangerous spot deep inside the cave. The members of your group are abandoning the place because they do not want to take the risk. But you still have a chance. Do you think you can get the treasure? Do you dare to continue?
 
-##Controls
+## Controls
 
 This is the **list of non full-body interactions** that we implemented on the game:<br />
  * **Restart** the game by pressing **return.**
