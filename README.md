@@ -21,11 +21,24 @@ You embarked on an adventure with a group of explorers to find a treasure that i
 
 ## Controls
 
-This is the **list of non full-body interactions** that we implemented on the game:<br />
+This is the **list of key interactions** that we implemented on the game:<br />
  * **Restart** the game by pressing **return.**
  * **End** the game by pressing **return.**
+ 
+The rest **must be controlled* with the body thanks to posenet**.
+How to use **posenet**:
+* PoseNet to OSC adaptation
+  * https://github.com/tommymitch/posenetosc 
+* extOSC unity package
+  * https://assetstore.unity.com/packages/tools/input-management/extosc-open-sound-control-72005
 
-//Explicar que se debe instalar posenet y dar todos los créditos de las manos a Poly Google.
+You will need to follow the instructions to run PoseNet OSC and then you will be able to run this project.
+
+## Credits
+
+The **authorship of the model of the hands is from Poly Google.**
+
+The rest of the **assets are from the Asset store** and the **sounds** come **from https://freesound.org/**
 
 **If you want to play the game, we do not recommend reading any further**, as we will explain all the interactions, tracks and events of the game below, and you will lose the emotion of discovering it for yourself.
 
