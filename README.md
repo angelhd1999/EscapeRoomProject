@@ -42,7 +42,7 @@ The rest of the **assets are from the Asset store** and the **sounds** come **fr
 
 ## Spoiler and extensive explanation
 
-**If you want to play the game, we do not recommend reading any further**, as we will explain all the **interactions, tracks and events** of the game below, and you will lose the emotion of discovering it for yourself.
+**If you want to enjoy the game, we do not recommend reading any further**, as we will explain all the **interactions, tracks and events** of the game below, and you will lose the emotion of discovering it for yourself.
 
 This is the **list of full-body interactions** that we implemented on the game:<br />
 * **Decision-making capacity with the head:**
@@ -58,4 +58,10 @@ This is the **list of full-body interactions** that we implemented on the game:<
   * With the **left hand the cranks turn to the left** and the **corresponding color of the crank is subtracted to the smoke**.
 
 This is the **list of tracks** that we added to the game:<br />
-//Hablar de las pistas y sucesos que se dan lugar durante la partida.
+* **There is a main track under the table in the first scene.**
+  * You have to **bend down** to see it well.
+  * Provides information on the **appearance and density of minerals** to balance the weight scales with them.
+* If you bend down on the **second stage** you can see a **small hole where the rock will open**, that indicates that you will find an exit there.
+* To the **right of the second stage** you can see **two signs** that **indicate** how each hand interacts with the cranks, **the right turns them to the right and the left to the left.**
+
+//Hablar de los sucesos que se dan lugar durante la partida.
