@@ -116,8 +116,10 @@ public class AnalyticsSender {
   private void SendHit(Dictionary<string,string> fields) {
     StringBuilder sb = new StringBuilder(prefix);
     foreach (KeyValuePair<string, string> pair in fields) {
-      sb.AppendFormat("&{0}={1}", WWW.EscapeURL(pair.Key), WWW.EscapeURL(pair.Value));
-    }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&{0}={1}", WWW.EscapeURL(pair.Key), WWW.EscapeURL(pair.Value));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
     string payload = sb.ToString();
     try {
       UnityWebRequest request = new UnityWebRequest("https://www.google-analytics.com/collect", "POST");

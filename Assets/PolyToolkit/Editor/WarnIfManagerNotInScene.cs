@@ -18,8 +18,11 @@ using UnityEditor.Build;
 using PolyToolkit;
 
 namespace PolyToolkitEditor {
-class WarnIfManagerNotInScene : IProcessScene, IPostprocessBuild {
-  bool sawManager;
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+    class WarnIfManagerNotInScene : IProcessScene, IPostprocessBuild
+    {
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+        bool sawManager;
 
   public int callbackOrder { get { return 0; } }
 

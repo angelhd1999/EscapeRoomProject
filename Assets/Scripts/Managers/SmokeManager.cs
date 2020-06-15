@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SmokeManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pose;
-    [SerializeField] private GameObject GameStateManager;
+    [SerializeField] private GameObject pose = null;
+    [SerializeField] private GameObject GameStateManager = null;
     [SerializeField] private string selectableTag = "Selectable";
-    private Transform _selectionR;
-    private Transform _selectionL;
+    private Transform _selectionR = null;
+    private Transform _selectionL = null;
     private string objectNameR;
     private string objectNameL;
     Vector3 hitPointR;

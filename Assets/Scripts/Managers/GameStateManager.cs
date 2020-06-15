@@ -7,18 +7,18 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance; //Singleton
     
-    [SerializeField] private GameObject pose;
-    [SerializeField] private Transform head;
-    [SerializeField] private Transform lWrist;
-    [SerializeField] private Transform rWrist;
-    [SerializeField] private GameObject message;
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject particles;
-    [SerializeField] private GameObject openRock;
-    [SerializeField] private GameObject fallenRocks;
-    [SerializeField] private GameObject sun;
-    [SerializeField] private GameObject sunLight;
-    [SerializeField] private GameObject exit;
+    [SerializeField] private GameObject pose = null;
+    [SerializeField] private Transform head = null;
+    [SerializeField] private Transform lWrist = null;
+    [SerializeField] private Transform rWrist = null;
+    [SerializeField] private GameObject message = null;
+    [SerializeField] private GameObject background = null;
+    [SerializeField] private GameObject particles = null;
+    [SerializeField] private GameObject openRock = null;
+    [SerializeField] private GameObject fallenRocks = null;
+    [SerializeField] private GameObject sun = null;
+    [SerializeField] private GameObject sunLight = null;
+    [SerializeField] private GameObject exit = null;
 
 
     private bool isSphereScene = true;

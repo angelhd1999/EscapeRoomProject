@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField] private Transform player;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private Transform player = null;
+    [SerializeField] private Vector3 offset = new Vector3();
 
     private void Update()
     {

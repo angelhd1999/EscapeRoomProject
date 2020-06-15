@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private GameObject GameStateManager;
+    [SerializeField] private GameObject GameStateManager = null;
 
     // Start is called before the first frame update
     void Start()

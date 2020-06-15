@@ -156,9 +156,11 @@ public class PolyImporter : AssetPostprocessor {
 
     GameObject newPrefab;
     if (prefabToReplace) {
-      // Replace the existing prefab with our new object, without breaking prefab connections.
-      newPrefab = PrefabUtility.ReplacePrefab(result.root, prefabToReplace, ReplacePrefabOptions.ReplaceNameBased);
-      AssetDatabase.RenameAsset(AssetDatabase.GetAssetPath(newPrefab), baseName);
+                // Replace the existing prefab with our new object, without breaking prefab connections.
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                newPrefab = PrefabUtility.ReplacePrefab(result.root, prefabToReplace, ReplacePrefabOptions.ReplaceNameBased);
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+                AssetDatabase.RenameAsset(AssetDatabase.GetAssetPath(newPrefab), baseName);
     } else {
       // Create a new prefab.
       // Prefab path is the same as the asset path but with the extension changed to '.prefab'.
@@ -168,8 +170,10 @@ public class PolyImporter : AssetPostprocessor {
         PtAnalytics.SendEvent(PtAnalytics.Action.IMPORT_FAILED, "Prefab path error");
         return;
       }
-      newPrefab = PrefabUtility.CreatePrefab(prefabLocalPath, result.root);
-    }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                newPrefab = PrefabUtility.CreatePrefab(prefabLocalPath, result.root);
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
     // Now ensure the asset points to the prefab.
     newAsset.assetPrefab = newPrefab;

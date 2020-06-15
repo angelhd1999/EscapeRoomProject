@@ -503,7 +503,6 @@ GameObject:
   - component: {fileID: 169564933}
   - component: {fileID: 169564932}
   - component: {fileID: 169564931}
-  - component: {fileID: 169564935}
   - component: {fileID: 169564936}
   m_Layer: 2
   m_Name: WristL
@@ -587,18 +586,6 @@ Transform:
   m_Father: {fileID: 2048712221}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &169564935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169564930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09aec0d2791a15843939936cb07a29bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &169564936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29971,8 +29958,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 637892670518865092, guid: 9e9a6e16da3850749b2308563275f047, type: 3}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 60768ba05173bd04fb5684ecee46b32a, type: 2}
+  - {fileID: 2100000, guid: 60768ba05173bd04fb5684ecee46b32a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30649,7 +30636,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: 3}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -30959,8 +30946,8 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
-      minScalar: 1
+      scalar: 0.5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -34682,8 +34669,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800407990}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -258, y: -73, z: 177}
-  m_LocalScale: {x: 11, y: 10, z: 10}
+  m_LocalPosition: {x: -253.2, y: -73, z: 162.5}
+  m_LocalScale: {x: 20, y: 20, z: 10}
   m_Children: []
   m_Father: {fileID: 580623959}
   m_RootOrder: 3
@@ -45694,7 +45681,6 @@ GameObject:
   - component: {fileID: 2122282092}
   - component: {fileID: 2122282091}
   - component: {fileID: 2122282090}
-  - component: {fileID: 2122282094}
   - component: {fileID: 2122282095}
   m_Layer: 2
   m_Name: WristR
@@ -45778,18 +45764,6 @@ Transform:
   m_Father: {fileID: 2048712221}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2122282094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122282089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09aec0d2791a15843939936cb07a29bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2122282095
 AudioSource:
   m_ObjectHideFlags: 0

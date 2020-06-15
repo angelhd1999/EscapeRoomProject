@@ -20,8 +20,11 @@ using PolyToolkitInternal;
 namespace PolyToolkitEditor {
 
 [InitializeOnLoad]
-public class CheckBuild : IPreprocessBuild {
-  public int callbackOrder { get { return 0; } }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+    public class CheckBuild : IPreprocessBuild
+    {
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+        public int callbackOrder { get { return 0; } }
   public void OnPreprocessBuild(BuildTarget target, string path) {
     CheckApiCompatibilitySetting();
     // In the future, we can add other checks here.

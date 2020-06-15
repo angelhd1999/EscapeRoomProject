@@ -186,8 +186,10 @@ namespace PolyToolkitInternal.entitlement {
 
       UserInfo user = new UserInfo();
       for (int i = 0; i < 2; i++) {
-        string uri = m_UserInfoUri + "&key=" + WWW.EscapeURL(PolyMainInternal.Instance.apiKey);
-        using (UnityWebRequest www = UnityWebRequest.Get(uri)) {
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                string uri = m_UserInfoUri + "&key=" + WWW.EscapeURL(PolyMainInternal.Instance.apiKey);
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+                using (UnityWebRequest www = UnityWebRequest.Get(uri)) {
           Authenticate(www);
           yield return UnityCompat.SendWebRequest(www);
           if (www.responseCode == 200) {

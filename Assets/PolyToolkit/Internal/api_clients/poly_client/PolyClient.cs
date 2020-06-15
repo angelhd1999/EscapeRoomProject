@@ -127,33 +127,47 @@ namespace PolyToolkitInternal.api_clients.poly_client {
       StringBuilder sb = new StringBuilder();
       sb.Append(BASE_URL)
         .Append("/v1/assets")
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
         .AppendFormat("?key={0}", WWW.EscapeURL(PolyMainInternal.Instance.apiKey));
-      
-      if (listAssetsRequest.formatFilter != null) {
-        sb.AppendFormat("&format={0}", WWW.EscapeURL(FORMAT_FILTER[listAssetsRequest.formatFilter.Value]));
-      }
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+
+            if (listAssetsRequest.formatFilter != null) {
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&format={0}", WWW.EscapeURL(FORMAT_FILTER[listAssetsRequest.formatFilter.Value]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
       if (listAssetsRequest.keywords != null) {
-        sb.AppendFormat("&keywords={0}", WWW.EscapeURL(listAssetsRequest.keywords));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&keywords={0}", WWW.EscapeURL(listAssetsRequest.keywords));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
       
       if (listAssetsRequest.category != PolyCategory.UNSPECIFIED) {
-        sb.AppendFormat("&category={0}", WWW.EscapeURL(CATEGORIES[listAssetsRequest.category]));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&category={0}", WWW.EscapeURL(CATEGORIES[listAssetsRequest.category]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
       if (listAssetsRequest.curated) {
         sb.Append("&curated=true");
       }
 
       if (listAssetsRequest.maxComplexity != PolyMaxComplexityFilter.UNSPECIFIED) {
-        sb.AppendFormat("&max_complexity={0}", WWW.EscapeURL(MAX_COMPLEXITY[listAssetsRequest.maxComplexity]));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&max_complexity={0}", WWW.EscapeURL(MAX_COMPLEXITY[listAssetsRequest.maxComplexity]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
-      sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listAssetsRequest.orderBy]));
-      sb.AppendFormat("&page_size={0}", listAssetsRequest.pageSize.ToString());
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listAssetsRequest.orderBy]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&page_size={0}", listAssetsRequest.pageSize.ToString());
       if (listAssetsRequest.pageToken != null) {
-        sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listAssetsRequest.pageToken));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listAssetsRequest.pageToken));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
       return sb.ToString();
     }
 
@@ -167,17 +181,25 @@ namespace PolyToolkitInternal.api_clients.poly_client {
         .AppendFormat("?key={0}", PolyMainInternal.Instance.apiKey);
         
       if (listUserAssetsRequest.formatFilter != null) {
-        sb.AppendFormat("&format={0}", WWW.EscapeURL(FORMAT_FILTER[listUserAssetsRequest.formatFilter.Value]));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&format={0}", WWW.EscapeURL(FORMAT_FILTER[listUserAssetsRequest.formatFilter.Value]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
       if (listUserAssetsRequest.visibility != PolyVisibilityFilter.UNSPECIFIED) {
-        sb.AppendFormat("&visibility={0}", WWW.EscapeURL(VISIBILITY[listUserAssetsRequest.visibility]));
-      }
-      sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listUserAssetsRequest.orderBy]));
-      sb.AppendFormat("&page_size={0}", listUserAssetsRequest.pageSize);
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&visibility={0}", WWW.EscapeURL(VISIBILITY[listUserAssetsRequest.visibility]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listUserAssetsRequest.orderBy]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&page_size={0}", listUserAssetsRequest.pageSize);
       if (listUserAssetsRequest.pageToken != null) {
-        sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listUserAssetsRequest.pageToken));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listUserAssetsRequest.pageToken));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
       return sb.ToString();
     }
@@ -190,12 +212,16 @@ namespace PolyToolkitInternal.api_clients.poly_client {
       sb.Append(BASE_URL)
         .Append("/v1/users/me/likedassets")
         .AppendFormat("?key={0}", PolyMainInternal.Instance.apiKey);
-        
-      sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listLikedAssetsRequest.orderBy]));
-      sb.AppendFormat("&page_size={0}", listLikedAssetsRequest.pageSize);
+
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&order_by={0}", WWW.EscapeURL(ORDER_BY[listLikedAssetsRequest.orderBy]));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            sb.AppendFormat("&page_size={0}", listLikedAssetsRequest.pageSize);
       if (listLikedAssetsRequest.pageToken != null) {
-        sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listLikedAssetsRequest.pageToken));
-      }
+#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+                sb.AppendFormat("&page_token={0}", WWW.EscapeURL(listLikedAssetsRequest.pageToken));
+#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+            }
 
       return sb.ToString();
     }

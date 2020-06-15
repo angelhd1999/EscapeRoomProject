@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class SelectorManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pose;
-    [SerializeField] private GameObject GameStateManager;
+    [SerializeField] private GameObject pose = null;
+    [SerializeField] private GameObject GameStateManager = null;
     [SerializeField] private string selectableTag = "Selectable";
-    [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material defaultMaterial;
-    [SerializeField] private Material MgMaterial;
-    [SerializeField] private Material AlMaterial;
-    [SerializeField] private Material TiMaterial;
-    [SerializeField] private Material BrMaterial;
-    [SerializeField] private Material BzMaterial;
-    [SerializeField] private Material AgMaterial;
+    [SerializeField] private Material highlightMaterial = null;
+    [SerializeField] private Material defaultMaterial = null;
+    [SerializeField] private Material MgMaterial = null;
+    [SerializeField] private Material AlMaterial = null;
+    [SerializeField] private Material TiMaterial = null;
+    [SerializeField] private Material BrMaterial = null;
+    [SerializeField] private Material BzMaterial = null;
+    [SerializeField] private Material AgMaterial = null;
     [SerializeField] private float timeToPick = 0.75f;
     [SerializeField] private float timeToDrop = 1f;
 

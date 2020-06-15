@@ -10,8 +10,8 @@ public class WeightScale : MonoBehaviour
     public float calculatedMass;
     public int registeredRigidbodies;
 
-    [SerializeField] private GameObject PhysicsManager;
-    [SerializeField] private GameObject Safe;
+    [SerializeField] private GameObject PhysicsManager = null;
+    [SerializeField] private GameObject Safe = null;
 
     Dictionary<Rigidbody, float> impulsePerRigidBody = new Dictionary<Rigidbody, float>();
 
