@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
+/// <summary>
+/// This scripts make the measure bars of the safe move accordingly to the weights detected from the weight scales.
+/// </summary>
 public class MesureMovement : MonoBehaviour
 {
     public GameObject LMesure;
@@ -27,8 +28,8 @@ public class MesureMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initPositionLM = LMesure.transform.position + new Vector3(0, -26.5f, 0);
-        initPositionRM = RMesure.transform.position + new Vector3(0, -26.5f, 0);
+        initPositionLM = LMesure.transform.position + new Vector3(0, -moveDist, 0); //The bars will have the starting point reference at the bottom.
+        initPositionRM = RMesure.transform.position + new Vector3(0, -moveDist, 0);
     }
 
     public void UpdateMesures()
@@ -39,31 +40,23 @@ public class MesureMovement : MonoBehaviour
             LWeight = LWScale.GetComponent<WeightScale>().calculatedMass;
             RWeight = RWScale.GetComponent<WeightScale>().calculatedMass;
             totalWeight = LWeight + RWeight;
-            //Debug.Log(totalWeight);
             if (totalWeight != 0)
             {
-                //Debug.LogError("LWeight: " + LWeight);
-                //Debug.LogError("RWeight: " + RWeight);
-                //Debug.LogError("totalWeight: " + totalWeight);
                 LRelation = LWeight / totalWeight;
                 RRelation = 1f - LRelation;
-                //Debug.LogError("LRelation: " + LRelation);
-                //Debug.LogError("RRelation: " + RRelation);
-                LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0);
+                LMesure.transform.position = initPositionLM + new Vector3(0, LRelation * 2 * moveDist, 0); //The bars will start from the bottom, moveDist is half the distance of the total margin so it's multiplied by to to make the bars be able to reach the top.
                 RMesure.transform.position = initPositionRM + new Vector3(0, RRelation * 2 * moveDist, 0);
             }
-            else
+            else //If no weight is detected
             {
-                LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0);
+                LMesure.transform.position = initPositionLM + new Vector3(0, moveDist, 0); //The bars will reamain balanced at the middle.
                 RMesure.transform.position = initPositionRM + new Vector3(0, moveDist, 0);
             }
             if (!pebbleDone)
             {
                 PebbleFalling();
             }
-            //Debug.Log("LRelation: " + Math.Round(LRelation, 4, MidpointRounding.AwayFromZero));
-            //Debug.Log("RRelation: " + Math.Round(RRelation, 4, MidpointRounding.AwayFromZero));
-
+            //If the two weight scales are balanced and all the spheres are detected the safe will be opened.
             if ((Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum) || Input.GetKeyDown("space")) //To Debug
             //if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
             {
@@ -76,6 +69,7 @@ public class MesureMovement : MonoBehaviour
 
     }
 
+    //We added a pebble falling when the user puts two spheres over the weight scales to make the player feel that their interaction is causing changes on stage. (Earthquake prevention.)
     void PebbleFalling()
     {
         if (totalSpheres == 2)

@@ -25,6 +25,12 @@ public class SmokeManager : MonoBehaviour
 
     private int counter; //Color achieved counter.
 
+    /*
+     * Ball colors array
+     * ballColors[0] --> red.
+     * ballColors[1] --> green.
+     * ballColors[2] --> blue.
+     */
     private int[] ballColors;
 
     // Start is called before the first frame update
@@ -36,13 +42,13 @@ public class SmokeManager : MonoBehaviour
     }
 
     //Debug
-    
+
 
     void changeBallColor()
     {
         System.Random r = new System.Random();
 
-       int[] smokeColors =  smoke.GetComponent<SmokeScript>().getCurrentColor();
+        int[] smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
 
         ballColors[0] = r.Next(0, 256);
         ballColors[1] = r.Next(0, 256);
@@ -82,7 +88,7 @@ public class SmokeManager : MonoBehaviour
                 objectNameR = hitR.collider.gameObject.name;
 
                 //Assing selected crank.
-                if(selectedCrankRight != null && !selectedCrankRight.name.Equals(objectNameR))
+                if (selectedCrankRight != null && !selectedCrankRight.name.Equals(objectNameR))
                 {
                     selectedCrankRight.GetComponent<RotateObject>().enabled = false;
                     selectedCrankRight = null;
@@ -93,7 +99,7 @@ public class SmokeManager : MonoBehaviour
             }
             else
             {
-                if(selectedCrankRight != null)
+                if (selectedCrankRight != null)
                 {
                     selectedCrankRight.GetComponent<RotateObject>().enabled = false;
                     selectedCrankRight = null;
@@ -104,8 +110,8 @@ public class SmokeManager : MonoBehaviour
         }
         else
         {
-            if(selectedCrankRight != null)
-                {
+            if (selectedCrankRight != null)
+            {
                 selectedCrankRight.GetComponent<RotateObject>().enabled = false;
                 selectedCrankRight = null;
             }
@@ -161,12 +167,12 @@ public class SmokeManager : MonoBehaviour
         //if (smokeBallEqualColor())
         {
             counter++; //Add one to the counter.
-            if(counter == 1)
+            if (counter == 1)
             {
                 changeBallColor(); //Change ball color.
                 GameStateManager.GetComponent<GameStateManager>().preEndTubesScene();
             }
-            if(counter == 2)
+            if (counter == 2)
             {
                 GameStateManager.GetComponent<GameStateManager>().endTubesScene();
             }
@@ -177,7 +183,8 @@ public class SmokeManager : MonoBehaviour
     {
         crank.GetComponent<RotateObject>().setVector(rotationVector);
         int[] smokeColors = smoke.GetComponent<SmokeScript>().getCurrentColor();
-        //What crank was selected.
+
+        //Switch with different case for each crank.
         switch (crank.name)
         {
             case "Red Cross":
@@ -201,7 +208,7 @@ public class SmokeManager : MonoBehaviour
                 {
                     crank.GetComponent<RotateObject>().enabled = true;
                 }
-                if(String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
+                if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -colorChangeTolerance, 0.0f);
                 break;
             case "Blue Cross":
@@ -219,32 +226,14 @@ public class SmokeManager : MonoBehaviour
             default:
                 break;
         }
-        
+
         if (!crank.GetComponent<AudioSource>().isPlaying)
         {
             crank.GetComponent<AudioSource>().Play();
         }
     }
 
-    /* Instead of using this function a variable called hand was added to rotateCrank function.
-    //Function to compare two Vector3 with an allowedDifference.
-    public bool Approximately(Vector3 me, Vector3 other, float allowedDifference)
-    {
-        var dx = me.x - other.x;
-        if (Mathf.Abs(dx) > allowedDifference)
-            return false;
-
-        var dy = me.y - other.y;
-        if (Mathf.Abs(dy) > allowedDifference)
-            return false;
-
-        var dz = me.z - other.z;
-
-        return Mathf.Abs(dz) >= allowedDifference;
-    }
-    */
-
-
+    //Function that checks if the ball has the same color as the smoke with certain tolerance.
     bool smokeBallEqualColor()
     {
         int colorCount = 0;
@@ -274,5 +263,5 @@ public class SmokeManager : MonoBehaviour
         else return false;
     }
 
-   
+
 }

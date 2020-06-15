@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Simple script that makes the camera follows the position and rotation of the head of the player.
+/// </summary>
 public class CameraController : MonoBehaviour
 {
 

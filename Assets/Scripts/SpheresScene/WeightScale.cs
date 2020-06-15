@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// This script weights in a realistic way the different objects that collide with the weight scales.
+/// </summary>
 public class WeightScale : MonoBehaviour
 {
-    float forceToMass;
-
+    
     public float combinedForce;
     public float calculatedMass;
     public int registeredRigidbodies;
 
     [SerializeField] private GameObject PhysicsManager = null;
     [SerializeField] private GameObject Safe = null;
+    private float forceToMass;
+    private float currentDeltaTime;
+    private float lastDeltaTime;
 
-    Dictionary<Rigidbody, float> impulsePerRigidBody = new Dictionary<Rigidbody, float>();
-
-    float currentDeltaTime;
-    float lastDeltaTime;
+    Dictionary<Rigidbody, float> impulsePerRigidBody = new Dictionary<Rigidbody, float>(); 
 
     private void Awake()
     {
-        //forceToMass = 1f / Physics.gravity.magnitude; //By default
-        forceToMass = 1f / PhysicsManager.GetComponent<PhysicsManager>().gravity; //With personalized gravity.
+        forceToMass = 1f / PhysicsManager.GetComponent<PhysicsManager>().gravity; //With our personalized gravity.
     }
 
     void UpdateWeight()

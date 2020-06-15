@@ -1,8 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
+/// <summary>
+/// This script manages the user interaction with the spheres of the first scene, you can grab and release the spheres and it will be highlighted when your hand is over them.
+/// </summary>
 public class SelectorManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose = null;
@@ -18,13 +19,13 @@ public class SelectorManager : MonoBehaviour
     [SerializeField] private Material AgMaterial = null;
     [SerializeField] private float timeToPick = 0.75f;
     [SerializeField] private float timeToDrop = 1f;
+    [SerializeField] private bool couroutineRunnigR = false;
 
     private Material currentMaterial;
     private Transform _selectionR;
     private Transform _selectionL;
     private string objectNameR;
     private string objectNameL;
-    [SerializeField] private bool couroutineRunnigR = false;
     private bool couroutineRunnigL = false;
     private bool couroutineMovingR = false;
     private bool couroutineMovingL = false; 
@@ -32,12 +33,6 @@ public class SelectorManager : MonoBehaviour
     private bool setLeft = false;
     Vector3 hitPointR;
     Vector3 hitPointL;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -60,7 +55,6 @@ public class SelectorManager : MonoBehaviour
             var selection = hitR.transform;
             if (selection.CompareTag(selectableTag))
             {
-                //Debug.Log(hitR.collider.gameObject.name);
                 _selectionR = selection;
                 objectNameR = hitR.collider.gameObject.name;
                
@@ -73,11 +67,10 @@ public class SelectorManager : MonoBehaviour
                 hitPointR = hitR.point;
             }
         }
-        else
+        else //Raycast is not detecting collision
         {
             objectNameR = "";
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristR.transform.position - Camera.main.transform.position) * 1000, Color.white);
-            //Debug.Log("Did not Hit");
         }
         //Left Wrist
         RaycastHit hitL;
@@ -88,7 +81,6 @@ public class SelectorManager : MonoBehaviour
             var selection = hitL.transform;
             if (selection.CompareTag(selectableTag))
             {
-                //Debug.Log(hitL.collider.gameObject.name);
                 _selectionL = selection;
                 objectNameL = hitL.collider.gameObject.name;
 
@@ -101,13 +93,14 @@ public class SelectorManager : MonoBehaviour
                 hitPointL = hitL.point;
             }
         }
-        else
+        else //Raycast is not detecting collision
         {
             objectNameL = "";
             Debug.DrawRay(Camera.main.transform.position, (pose.GetComponent<TrackingReceiver>().wristL.transform.position - Camera.main.transform.position) * 1000, Color.white);
-            //Debug.Log("Did not Hit");
         }
     }
+
+    //Checks if a hand is already picking an object before trying to pick it.
     void CheckPick(bool right)
     {
         if (right)
@@ -127,6 +120,8 @@ public class SelectorManager : MonoBehaviour
             }
         }
     }
+
+    //Makes the right hand pick an sphere if the hand is over it during 0.75s, if the hands detects another object it will stop trying to pick the sphere.
     IEnumerator PickSphereR()
     {
         string firstObjectName = objectNameR;
@@ -159,6 +154,7 @@ public class SelectorManager : MonoBehaviour
         yield break;
     }
 
+    //Makes the left hand pick an sphere if the hand is over it during 0.75s, if the hands detects another object it will stop trying to pick the sphere.
     IEnumerator PickSphereL()
     {
         string firstObjectName = objectNameL;
@@ -192,6 +188,8 @@ public class SelectorManager : MonoBehaviour
         }
         yield break;
     }
+
+    //Once the object is picked a sound will be played and thanks to the new couroutines the sphere will start moving along the hand.
     void CheckMove(Transform selection, bool hand)
     {
         if (hand)
@@ -214,6 +212,7 @@ public class SelectorManager : MonoBehaviour
         }
     }
 
+    //Checks what hand is picking the object and make the object move along the hand until the hand stops for 1 second.
     IEnumerator MoveSphere(Transform selection, bool right)
     {
         float startTime = Time.time;
@@ -223,7 +222,6 @@ public class SelectorManager : MonoBehaviour
         {
             while (couroutineMovingR)
             {
-                //Debug.Log("inMoveSphere loop");
                 if (!settedPosition)
                 {
                     prev_position = selection.position;
@@ -285,6 +283,7 @@ public class SelectorManager : MonoBehaviour
         
     }
 
+    //Highlights the selected sphere to make the user interaction easier.
     void HighlightSphere(Transform _selection, string objectName)
     {
         if (objectName.Contains("Sphere")) {
@@ -296,6 +295,7 @@ public class SelectorManager : MonoBehaviour
         }
     }
 
+    //Return the sphere to its original material.
     void DeHighlightSphere(Transform _selection, string objectName)
     {
         if (objectName.Contains("Sphere"))

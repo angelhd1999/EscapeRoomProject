@@ -1,8 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This script manages the principal animations, sounds and scene changes of the game.
+/// </summary>
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance; //Singleton
@@ -29,12 +31,12 @@ public class GameStateManager : MonoBehaviour
     private AudioSource firstRockOpen;
     private AudioSource lastRockOpen;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
     }
 
+    // Start is called before the first frame update
     void Start()
     {
         poseAnim = pose.GetComponent<Animator>();
@@ -56,11 +58,16 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) //You can click escape to quit the game.
+        {
+            ExitGame();
+        }
+        if (Input.GetKeyDown(KeyCode.Return)) //If some bug appears you can click return to restart the game.
         {
             SceneManager.LoadScene("SpheresScene");
         }
-        if (!initDone)
+
+        if (!initDone) //If the initialization is done update wont try this.
         {
             if (isSphereScene)
             {
@@ -135,12 +142,11 @@ public class GameStateManager : MonoBehaviour
     {
         pose.GetComponent<TrackingReceiver>().enabled = false; //Stop posenet
         poseAnim.SetBool("SceneOneDone", true);
-        //Make earthquake sound
         head.position = new Vector3(0, 180, 0);
         lWrist.position = new Vector3(-120, 0, 0);
         rWrist.position = new Vector3(120, 0, 0);
         particles.gameObject.SetActive(true);
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play(); //Earthquake sound
     }
     public void goTubesScene()
     {
