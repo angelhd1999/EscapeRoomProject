@@ -163,8 +163,7 @@ public class SmokeManager : MonoBehaviour
         }
 
         //If the smoke and ball color are equal.
-        if (smokeBallEqualColor() || Input.GetKeyDown("space")) //To Debug
-        //if (smokeBallEqualColor())
+        if (smokeBallEqualColor()) 
         {
             counter++; //Add one to the counter.
             if (counter == 1)
@@ -250,19 +249,19 @@ public class SmokeManager : MonoBehaviour
 
         if (ballColors[0] - colorComparationTolerance < smokeColors[0] && smokeColors[0] < ballColors[0] + colorComparationTolerance)
         {
-            //Debug.Log("Red OK"); //Control log.
+            Debug.Log("Red OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors[1] - colorComparationTolerance < smokeColors[1] && smokeColors[1] < ballColors[1] + colorComparationTolerance)
         {
-            //Debug.Log("Green OK"); //Control log.
+            Debug.Log("Green OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors[2] - colorComparationTolerance < smokeColors[2] && smokeColors[2] < ballColors[2] + colorComparationTolerance)
         {
-            //Debug.Log("Blue OK"); //Control log.
+            Debug.Log("Blue OK"); //Control log.
             colorCount++;
         }
 

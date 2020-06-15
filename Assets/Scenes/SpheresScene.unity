@@ -37382,7 +37382,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1fc3f5edffdde544cb77d948f65e96b6, type: 3}
-    m_FontSize: 80
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -37393,13 +37393,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You were going with a group of adventurers to explore a cave where inside
-    is a treasure. There has been a point where they have not wanted to go on because
-    the cave is very dangerous. Do you think you can get the treasure? Do you dare
-    to continue?
+  m_Text: 'You embarked on an adventure with a group of explorers to find a treasure
+    that is hidden in a cave. After walking cautiously for a while, you have reached
+    a very dangerous spot deep inside the cave. The members of your group are abandoning
+    the place because they do not want to take the risk. But you still have a chance.
+    Do you think you can get the treasure? Do you dare to continue?
 
 
-    Make YES or NO with your head'
+    Nod to
+    continue or shake your head to leave.'
 --- !u!222 &1741341262
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38597,7 +38599,7 @@ MonoBehaviour:
   wannaExit: 0
   wannaStay: 0
   head: {fileID: 761990083}
-  yesMargin: 30
+  yesMargin: 15
   noMargin: 50
 --- !u!4 &2050169177 stripped
 Transform:

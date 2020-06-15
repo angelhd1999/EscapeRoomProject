@@ -57,8 +57,7 @@ public class MesureMovement : MonoBehaviour
                 PebbleFalling();
             }
             //If the two weight scales are balanced and all the spheres are detected the safe will be opened.
-            if ((Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum) || Input.GetKeyDown("space")) //To Debug
-            //if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
+            if (Math.Round(LRelation, 4, MidpointRounding.AwayFromZero) == Math.Round(RRelation, 4, MidpointRounding.AwayFromZero) && totalSpheres == spheresNum)
             {
                 runningScript = false;
                 Door.GetComponent<Animator>().SetBool("PlaySafe", true);
