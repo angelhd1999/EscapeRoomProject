@@ -45137,7 +45137,6 @@ GameObject:
   - component: {fileID: 2048712221}
   - component: {fileID: 2048712222}
   - component: {fileID: 2048712223}
-  - component: {fileID: 2048712224}
   m_Layer: 0
   m_Name: Pose
   m_TagString: Untagged
@@ -45200,18 +45199,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2048712224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048712220}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c91a6efbbb0f74b954bd59e1c6e244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &2076309303
 MeshFilter:
   m_ObjectHideFlags: 0

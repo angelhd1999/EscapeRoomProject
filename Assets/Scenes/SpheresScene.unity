@@ -31872,7 +31872,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599112553}
-  - component: {fileID: 1599112554}
   m_Layer: 0
   m_Name: User Interface
   m_TagString: Untagged
@@ -31895,30 +31894,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1599112554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599112552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 790051c44997e43458c8bedfb9ba83fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1741341261}
-  timer: {fileID: 0}
-  finalScore: {fileID: 0}
-  yesGesture: {fileID: 0}
-  noGesture: {fileID: 0}
-  retryQuestion: {fileID: 0}
-  gameTime: 1000
-  head: {fileID: 761990083}
-  score: 0
-  gameFinished: 0
-  seconds: 0
-  minutes: 0
 --- !u!1 &1632187784
 GameObject:
   m_ObjectHideFlags: 0
