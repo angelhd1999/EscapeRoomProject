@@ -49,7 +49,7 @@ This is the **list of full-body interactions** that we implemented on the game:<
   * **Nod to continue.** (movement must be clear / exaggerated sometimes)
   * **Shake your head** to get back to your group members.
 * **Ability to move the camera and flashlight with your head:** 
-  * You can **raise your head, duck, and move within range to widen your field of vision.**
+  * You can **raise your head, crouch, and move within range to widen your field of vision.**
 * **Take and release spheres (minerals):** 
   * **Hold either hand** on the mineral for less than a second. (until you hear a gripping sound)
   * **keep your hand** in about the **same position** for a second.
