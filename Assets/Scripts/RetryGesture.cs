@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 public class RetryGesture : MonoBehaviour
 {
     public GameObject head;
-    public GameObject UI;
-    public bool canRetry = false;
     public bool wannaExit = false;
     public bool wannaStay = false;
 
@@ -24,16 +22,6 @@ public class RetryGesture : MonoBehaviour
         StartCoroutine("InitPosition");
         StartCoroutine("UpYes");
         StartCoroutine("LeftNo");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (canRetry)
-        //{
-        //    canRetry = false;
-            
-        //}
     }
 
     private IEnumerator InitPosition()

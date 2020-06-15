@@ -46,11 +46,11 @@ public class GameStateManager : MonoBehaviour
         {
             isSphereScene = false;
             initTubesScene();
-        }
-        var rockSounds = openRock.GetComponents<AudioSource>();
-        firstRockOpen = rockSounds[0];
-        lastRockOpen = rockSounds[1];
 
+            var rockSounds = openRock.GetComponents<AudioSource>();
+            firstRockOpen = rockSounds[0];
+            lastRockOpen = rockSounds[1];
+        }  
     }
 
     // Update is called once per frame
