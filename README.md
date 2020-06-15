@@ -23,7 +23,7 @@ You embarked on an adventure with a group of explorers to find a treasure that i
 
 This is the **list of key interactions** that we implemented on the game:<br />
  * **Restart** the game by pressing **return.**
- * **End** the game by pressing **return.**
+ * **End** the game by pressing **escape.**
  
 The rest **must be controlled* with the body thanks to posenet**.
 How to use **posenet**:
