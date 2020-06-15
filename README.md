@@ -40,7 +40,9 @@ The **authorship of the model of the hands is from Poly Google.**
 
 The rest of the **assets are from the Asset store** and the **sounds** come **from https://freesound.org/**
 
-**If you want to play the game, we do not recommend reading any further**, as we will explain all the interactions, tracks and events of the game below, and you will lose the emotion of discovering it for yourself.
+## Spoiler and extensive explanation
+
+**If you want to play the game, we do not recommend reading any further**, as we will explain all the **interactions, tracks and events** of the game below, and you will lose the emotion of discovering it for yourself.
 
 This is the **list of full-body interactions** that we implemented on the game:<br />
 * **Decision-making capacity with the head:**
@@ -54,5 +56,6 @@ This is the **list of full-body interactions** that we implemented on the game:<
 * **Ability to rotate cranks:**
   * With the **right hand the cranks turn to the right** and the **corresponding color of the crank is added to the smoke.**
   * With the **left hand the cranks turn to the left** and the **corresponding color of the crank is subtracted to the smoke**.
-  
+
+This is the **list of tracks** that we added to the game:<br />
 //Hablar de las pistas y sucesos que se dan lugar durante la partida.
