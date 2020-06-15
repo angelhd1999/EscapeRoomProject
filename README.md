@@ -64,4 +64,9 @@ This is the **list of tracks** that we added to the game:<br />
 * If you bend down on the **second stage** you can see a **small hole where the rock will open**, that indicates that you will find an exit there.
 * To the **right of the second stage** you can see **two signs** that **indicate** how each hand interacts with the cranks, **the right turns them to the right and the left to the left.**
 
-//Hablar de los sucesos que se dan lugar durante la partida.
+This is the **list of events** that we added to the game:<br />
+* At the **beginning the player can decide whether or not to enter the cave** to continue the adventure with its corresponding animations.
+* If the player have decided to enter **by placing two spheres on the scales, you will hear the fall of a flint**, which is to indicate that interacting with the scales causes movements in the structure of the cave. (Premonition of the earthquake)
+* When **obtaining the treasure,** the gold, **an earthquake will occur that will obstruct the hole** through which the main character has entered, that will cause him to flee towards a column of smoke that **will direct him to the next scene.**
+* **Achieving a color of smoke matching the color of the upper sphere** of the tubes **will start the animation of the first opening of the rock** and the player will be able to **see a flash of the sun indicating that there is an exit from the cave.**
+* When the **second matching color is achieved, the rock will open fully and the light from the exit will dazzle the player as he heads towards it.**
