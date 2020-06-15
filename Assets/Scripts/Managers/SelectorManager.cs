@@ -28,7 +28,7 @@ public class SelectorManager : MonoBehaviour
     private string objectNameL;
     private bool couroutineRunnigL = false;
     private bool couroutineMovingR = false;
-    private bool couroutineMovingL = false; 
+    private bool couroutineMovingL = false;
     private bool setRight = true;
     private bool setLeft = false;
     Vector3 hitPointR;
@@ -57,7 +57,7 @@ public class SelectorManager : MonoBehaviour
             {
                 _selectionR = selection;
                 objectNameR = hitR.collider.gameObject.name;
-               
+
                 HighlightSphere(_selectionR, objectNameR);
                 CheckPick(setRight);
             }
@@ -159,7 +159,7 @@ public class SelectorManager : MonoBehaviour
     {
         string firstObjectName = objectNameL;
         Transform firstObjectSelected = _selectionL;
-       
+
         float startTime = Time.time;
         if (firstObjectName == "Gold")
         {
@@ -280,13 +280,14 @@ public class SelectorManager : MonoBehaviour
             }
             yield break;
         }
-        
+
     }
 
     //Highlights the selected sphere to make the user interaction easier.
     void HighlightSphere(Transform _selection, string objectName)
     {
-        if (objectName.Contains("Sphere")) {
+        if (objectName.Contains("Sphere"))
+        {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             if (selectionRenderer != null)
             {

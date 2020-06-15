@@ -10,7 +10,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("SceneChange"))
         {
-            if(other.name == "Tubes")
+            if (other.name == "Tubes")
             {
                 GameStateManager.GetComponent<GameStateManager>().goTubesScene();
             }

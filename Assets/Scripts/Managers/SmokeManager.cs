@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script that manages the changes of smoke and ball color. Also checks if they have the same color.
+/// </summary>
 public class SmokeManager : MonoBehaviour
 {
     [SerializeField] private GameObject pose = null;
@@ -40,8 +42,6 @@ public class SmokeManager : MonoBehaviour
         this.counter = 0; //Start counter at 0.
         this.changeBallColor();
     }
-
-    //Debug
 
 
     void changeBallColor()
@@ -195,6 +195,7 @@ public class SmokeManager : MonoBehaviour
                 else
                 {
                     crank.GetComponent<RotateObject>().enabled = true;
+                    playTurnCrankSound(crank);
                 }
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(colorChangeTolerance, 0.0f, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(-colorChangeTolerance, 0.0f, 0.0f);
@@ -207,6 +208,7 @@ public class SmokeManager : MonoBehaviour
                 else
                 {
                     crank.GetComponent<RotateObject>().enabled = true;
+                    playTurnCrankSound(crank);
                 }
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, colorChangeTolerance, 0.0f);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, -colorChangeTolerance, 0.0f);
@@ -219,6 +221,7 @@ public class SmokeManager : MonoBehaviour
                 else
                 {
                     crank.GetComponent<RotateObject>().enabled = true;
+                    playTurnCrankSound(crank);
                 }
                 if (String.Equals(hand, "right")) smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, colorChangeTolerance);
                 else smoke.GetComponent<SmokeScript>().increaseColor(0.0f, 0.0f, -colorChangeTolerance);
@@ -227,6 +230,11 @@ public class SmokeManager : MonoBehaviour
                 break;
         }
 
+
+    }
+
+    void playTurnCrankSound(GameObject crank)
+    {
         if (!crank.GetComponent<AudioSource>().isPlaying)
         {
             crank.GetComponent<AudioSource>().Play();
@@ -242,19 +250,19 @@ public class SmokeManager : MonoBehaviour
 
         if (ballColors[0] - colorComparationTolerance < smokeColors[0] && smokeColors[0] < ballColors[0] + colorComparationTolerance)
         {
-            Debug.Log("Red OK"); //Control log.
+            //Debug.Log("Red OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors[1] - colorComparationTolerance < smokeColors[1] && smokeColors[1] < ballColors[1] + colorComparationTolerance)
         {
-            Debug.Log("Green OK"); //Control log.
+            //Debug.Log("Green OK"); //Control log.
             colorCount++;
         }
 
         if (ballColors[2] - colorComparationTolerance < smokeColors[2] && smokeColors[2] < ballColors[2] + colorComparationTolerance)
         {
-            Debug.Log("Blue OK"); //Control log.
+            //Debug.Log("Blue OK"); //Control log.
             colorCount++;
         }
 

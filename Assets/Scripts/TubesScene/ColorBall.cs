@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+
+/// <summary>
+/// Script to set the ball color.
+/// </summary>
 public class ColorBall : MonoBehaviour
 {
     Renderer rend;
@@ -12,22 +14,10 @@ public class ColorBall : MonoBehaviour
         rend = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Set color in RGB values from 0 to 255.
     public void setColor(int red, int green, int blue)
     {
         rend.material.color = new Color(coloNumberConversion(red), coloNumberConversion(green), coloNumberConversion(blue));
-    }
-
-    Color getCurrentColor(float red, float green, float blue)
-    {
-        Color currentColor = rend.material.GetColor("_Color");
-        return currentColor;
     }
 
     private float coloNumberConversion(float num)

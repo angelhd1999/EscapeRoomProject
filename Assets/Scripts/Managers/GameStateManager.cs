@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance; //Singleton
-    
+
     [SerializeField] private GameObject pose = null;
     [SerializeField] private Transform head = null;
     [SerializeField] private Transform lWrist = null;
@@ -44,7 +44,8 @@ public class GameStateManager : MonoBehaviour
         {
             isSphereScene = true;
             initSpheresScene();
-        } else
+        }
+        else
         {
             isSphereScene = false;
             initTubesScene();
@@ -52,7 +53,7 @@ public class GameStateManager : MonoBehaviour
             var rockSounds = openRock.GetComponents<AudioSource>();
             firstRockOpen = rockSounds[0];
             lastRockOpen = rockSounds[1];
-        }  
+        }
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class GameStateManager : MonoBehaviour
                     LookMessage();
                     lookingMessage = true;
                 }
-                else if(lookingMessage)
+                else if (lookingMessage)
                 {
                     if (message.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("MsgInterState"))
                     {
@@ -122,20 +123,20 @@ public class GameStateManager : MonoBehaviour
                 }
             }
         }
-           
-        
+
+
     }
 
     public void initSpheresScene()
     {
-        poseAnim.SetBool("InitScene1", true);  
+        poseAnim.SetBool("InitScene1", true);
     }
 
     public void LookMessage()
     {
         message.GetComponent<Animator>().SetBool("startMessageFade", true);
         background.GetComponent<Animator>().SetBool("startBackgroundFade", true);
-        
+
     }
 
     public void preTubesScene()

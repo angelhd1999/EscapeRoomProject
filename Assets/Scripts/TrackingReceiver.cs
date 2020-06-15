@@ -29,7 +29,8 @@ public class TrackingReceiver : MonoBehaviour
         StartPose();
     }
 
-    void StartOSCReceiver() {
+    void StartOSCReceiver()
+    {
         // Creating a receiver.
         _receiver = gameObject.AddComponent<OSCReceiver>();
 
@@ -40,12 +41,13 @@ public class TrackingReceiver : MonoBehaviour
         _receiver.Bind(_oscAddress, MessageReceived);
     }
 
-    void StartPose() {
+    void StartPose()
+    {
         pose.Add("nose", Vector3.zero);
         pose.Add("leftWrist", Vector3.zero);
         pose.Add("rightWrist", Vector3.zero);
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -60,20 +62,21 @@ public class TrackingReceiver : MonoBehaviour
         List<OSCValue> list = message.Values;
         //UnityEngine.Debug.Log(list.Count);
 
-        for(int i=0;i<list.Count; i+=3)
+        for (int i = 0; i < list.Count; i += 3)
         {
             string key = "";
-            Vector2 position = Vector3.zero; 
+            Vector2 position = Vector3.zero;
 
             OSCValue val0 = list.ElementAt(i);
             if (val0.Type == OSCValueType.String) key = val0.StringValue;
-            OSCValue val1 = list.ElementAt(i+1);
-            if (val1.Type == OSCValueType.Float) position.x = val1.FloatValue-250;
-            OSCValue val2 = list.ElementAt(i+2);
-            if (val2.Type == OSCValueType.Float) position.y = -(val2.FloatValue-250);
+            OSCValue val1 = list.ElementAt(i + 1);
+            if (val1.Type == OSCValueType.Float) position.x = val1.FloatValue - 250;
+            OSCValue val2 = list.ElementAt(i + 2);
+            if (val2.Type == OSCValueType.Float) position.y = -(val2.FloatValue - 250);
 
-            if (pose.ContainsKey(key)) {
-                pose[key] = position; 
+            if (pose.ContainsKey(key))
+            {
+                pose[key] = position;
             }
         }
 

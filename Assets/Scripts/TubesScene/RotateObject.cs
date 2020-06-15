@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to rotate a crank.
+/// </summary>
 public class RotateObject : MonoBehaviour
 {
     public List<GameObject> Children;
     public Vector3 vector;
     public int velocity;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -19,12 +17,13 @@ public class RotateObject : MonoBehaviour
 
         foreach (GameObject child in Children)
         {
-            //child is your child transform
+            //It rotates each child component.
             child.transform.Rotate(vector * Time.deltaTime * velocity);
         }
-     
+
     }
 
+    //To change rotation vector.
     public void setVector(Vector3 newvector)
     {
         this.vector = newvector;
