@@ -70,3 +70,7 @@ This is the **list of events** that we added to the game:<br />
 * When **obtaining the treasure,** the gold, **an earthquake will occur that will obstruct the hole** through which the main character has entered, that will cause him to flee towards a column of smoke that **will direct him to the next scene.**
 * **Achieving a color of smoke matching the color of the upper sphere** of the tubes **will start the animation of the first opening of the rock** and the player will be able to **see a flash of the sun indicating that there is an exit from the cave.**
 * When the **second matching color is achieved, the rock will open fully and the light from the exit will dazzle the player as he heads towards it.**
+
+## Demo of the game
+
+*YouTube* link: https://www.youtube.com/watch?v=2N69BOkHjs4
