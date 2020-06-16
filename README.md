@@ -25,7 +25,7 @@ This is the **list of key interactions** that we implemented on the game:<br />
  * **Restart** the game by pressing **return.**
  * **End** the game by pressing **escape.**
  
-The rest **must be controlled* with the body thanks to posenet**.
+The rest **must be controlled with the body thanks to posenet**.
 How to use **posenet**:
 * PoseNet to OSC adaptation
   * https://github.com/tommymitch/posenetosc 
