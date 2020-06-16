@@ -63,6 +63,7 @@ This is the **list of tracks** that we added to the game:<br />
   * Provides information on the **appearance and density of minerals** to balance the weight scales with them.
 * If you bend down on the **second stage** you can see a **small hole where the rock will open**, that indicates that you will find an exit there.
 * To the **right of the second stage** you can see **two signs** that **indicate** how each hand interacts with the cranks, **the right turns them to the right and the left to the left.**
+* Thanks to the **painting on the rock**, the player can sense that **the smoke must be the same color as the upper sphere.**
 
 This is the **list of events** that we added to the game:<br />
 * At the **beginning the player can decide whether or not to enter the cave** to continue the adventure with its corresponding animations.
