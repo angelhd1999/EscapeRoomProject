@@ -11,11 +11,6 @@
 **User:** U150281<br />
 **Emails:** david.ciria01@estudiant.upf.edu<br />
 
-**Name:** Marc Furió <br />
-**NIA:** 204832<br />
-**User:** U149920<br />
-**Emails:** marc.furio01@estudiant.upf.edu<br />
-
 ## Game intro
 You embarked on an adventure with a group of explorers to find a treasure that is hidden in a cave. After walking cautiously for a while, you have reached a very dangerous spot deep inside the cave. The members of your group are abandoning the place because they do not want to take the risk. But you still have a chance. Do you think you can get the treasure? Do you dare to continue?
 
